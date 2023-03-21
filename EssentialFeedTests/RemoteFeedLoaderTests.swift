@@ -17,9 +17,11 @@ class RemoteFeedLoader {
 class HTTPClient {
     static var shared = HTTPClient() // this is not singleton anymore it's global shared instance
     
-    private init() {}
-    
-    func get(from url: URL) {
+    func get(from url: URL) {}
+}
+
+class HTTPClientSpy: HTTPClient {
+    override func get(from url: URL) {
         requestURL = url
     }
     
@@ -30,7 +32,8 @@ final class RemoteFeedLoaderTests: XCTestCase {
 
     func test_init_doesNotRequestDataFromURL() {
         // arrange
-        let client = HTTPClient.shared
+        let client = HTTPClientSpy()
+        HTTPClient.shared = client
         _ = RemoteFeedLoader()
         
         XCTAssertNil(client.requestURL)
@@ -38,7 +41,8 @@ final class RemoteFeedLoaderTests: XCTestCase {
     
     func test_load_requestDataFromURL() {
         // arrange
-        let client = HTTPClient.shared
+        let client = HTTPClientSpy()
+        HTTPClient.shared = client
         let sut = RemoteFeedLoader()
         
         // act
