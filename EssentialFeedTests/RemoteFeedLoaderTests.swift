@@ -10,14 +10,18 @@ import XCTest
 class RemoteFeedLoader {
     
     func load() {
-        HTTPClient.shared.requestURL = URL(string: "https://a-url.com")
+        HTTPClient.shared.get(from: URL(string: "https://a-url.com")!)
     }
 }
 
 class HTTPClient {
-    static let shared = HTTPClient()
+    static var shared = HTTPClient() // this is not singleton anymore it's global shared instance
     
     private init() {}
+    
+    func get(from url: URL) {
+        requestURL = url
+    }
     
     var requestURL: URL?
 }
@@ -25,6 +29,7 @@ class HTTPClient {
 final class RemoteFeedLoaderTests: XCTestCase {
 
     func test_init_doesNotRequestDataFromURL() {
+        // arrange
         let client = HTTPClient.shared
         _ = RemoteFeedLoader()
         
@@ -49,4 +54,5 @@ final class RemoteFeedLoaderTests: XCTestCase {
  - Think about what I have in order to provide url but use some kind of collaborator URLSession for example (HTTP client)
  - But I don't have URL yet so, maybe need to go from other direction(different angle) -->
  - We can provide client trough constructor, property, method injection, but there is another ways
+ - And we want to get rid of singleton --> global shared instance
  */
