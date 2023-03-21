@@ -9,21 +9,23 @@ import XCTest
 
 class RemoteFeedLoader {
     
-    var client: HTTPClient?
-    
-    func load(client: HTTPClient) {
-        self.client = client
+    func load() {
+        HTTPClient.shared.requestURL = URL(string: "https://a-url.com")
     }
 }
 
 class HTTPClient {
+    static let shared = HTTPClient()
+    
+    private init() {}
+    
     var requestURL: URL?
 }
 
 final class RemoteFeedLoaderTests: XCTestCase {
 
     func test_init_doesNotRequestDataFromURL() {
-        let client = HTTPClient()
+        let client = HTTPClient.shared
         _ = RemoteFeedLoader()
         
         XCTAssertNil(client.requestURL)
@@ -31,12 +33,11 @@ final class RemoteFeedLoaderTests: XCTestCase {
     
     func test_load_requestDataFromURL() {
         // arrange
-        let client = HTTPClient()
-        client.requestURL = URL(string: "test")
+        let client = HTTPClient.shared
         let sut = RemoteFeedLoader()
         
         // act
-        sut.load(client: client)
+        sut.load()
         
         // assert
         XCTAssertNotNil(client.requestURL)
@@ -47,4 +48,5 @@ final class RemoteFeedLoaderTests: XCTestCase {
  - Start from minimum requirements --> init
  - Think about what I have in order to provide url but use some kind of collaborator URLSession for example (HTTP client)
  - But I don't have URL yet so, maybe need to go from other direction(different angle) -->
+ - We can provide client trough constructor, property, method injection, but there is another ways
  */
