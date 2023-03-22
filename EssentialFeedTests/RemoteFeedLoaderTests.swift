@@ -15,6 +15,8 @@ class RemoteFeedLoader {
 }
 
 class HTTPClient {
+    // with shared instance we're mixing responsibilities. Responsibility of invoking a method in an object and locating this object
+    // So if we inject our client we have more control
     static var shared = HTTPClient() // this is not singleton anymore it's global shared instance
     
     func get(from url: URL) {}
@@ -33,8 +35,6 @@ final class RemoteFeedLoaderTests: XCTestCase {
     func test_init_doesNotRequestDataFromURL() {
         // arrange
         let client = HTTPClientSpy()
-//        client.get(from: URL(string: "https://a-url.com")!)
-//        client.requestURL = URL(string: "https://a-url.com")!
         HTTPClient.shared = client
         _ = RemoteFeedLoader()
         
@@ -61,4 +61,5 @@ final class RemoteFeedLoaderTests: XCTestCase {
  - But I don't have URL yet so, maybe need to go from other direction(different angle) -->
  - We can provide client trough constructor, property, method injection, but there is another ways
  - And we want to get rid of singleton --> global shared instance
+ - The smell is that we have a subclassing and we can use composition instead of the inheritance
  */
