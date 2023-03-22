@@ -8,14 +8,16 @@
 import XCTest
 
 class RemoteFeedLoader {
+    let url: URL
     let client: HTTPClient
     
-    init(client: HTTPClient) {
+    init(url: URL, client: HTTPClient) {
+        self.url = url
         self.client = client
     }
     
     func load() {
-        client.get(from: URL(string: "https://a-url.com")!)
+        client.get(from: url)
     }
 }
 
@@ -35,22 +37,24 @@ final class RemoteFeedLoaderTests: XCTestCase {
 
     func test_init_doesNotRequestDataFromURL() {
         // arrange
+        let url = URL(string: "https://a-url.com")!
         let client = HTTPClientSpy()
-        _ = RemoteFeedLoader(client: client)
+        _ = RemoteFeedLoader(url: url, client: client)
         
         XCTAssertNil(client.requestURL)
     }
     
     func test_load_requestDataFromURL() {
         // arrange
+        let url = URL(string: "https://a-given-url.com")!
         let client = HTTPClientSpy()
-        let sut = RemoteFeedLoader(client: client)
+        let sut = RemoteFeedLoader(url: url, client: client)
         
         // act
         sut.load()
         
         // assert
-        XCTAssertNotNil(client.requestURL)
+        XCTAssertEqual(client.requestURL, url)
     }
 }
 
@@ -63,4 +67,5 @@ final class RemoteFeedLoaderTests: XCTestCase {
  - The smell is that we have a subclassing and we can use composition instead of the inheritance
  - We can remove shared instance and have abstract class
  - Since the protocol is better as abstraction, we can remove class keyword
+ - When we load we can loading from multiple locations, so URL is the detail of the implementation of RemoteFeedLoader, it should not be in the public interface
  */
