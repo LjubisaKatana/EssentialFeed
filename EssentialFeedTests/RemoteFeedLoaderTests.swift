@@ -19,16 +19,12 @@ class RemoteFeedLoader {
     }
 }
 
-class HTTPClient { // This is the abstract class, check the get method it's just a signature
-    // with shared instance we're mixing responsibilities. Responsibility of invoking a method in an object and locating this object
-    // So if we inject our client we have more control
-//    static var shared = HTTPClient() // this is not singleton anymore it's global shared instance
-    
-    func get(from url: URL) {}
+protocol HTTPClient {
+    func get(from url: URL)
 }
 
 class HTTPClientSpy: HTTPClient {
-    override func get(from url: URL) {
+    func get(from url: URL) {
         requestURL = url
     }
     
@@ -65,4 +61,6 @@ final class RemoteFeedLoaderTests: XCTestCase {
  - We can provide client trough constructor, property, method injection, but there is another ways
  - And we want to get rid of singleton --> global shared instance
  - The smell is that we have a subclassing and we can use composition instead of the inheritance
+ - We can remove shared instance and have abstract class
+ - Since the protocol is better as abstraction, we can remove class keyword
  */
