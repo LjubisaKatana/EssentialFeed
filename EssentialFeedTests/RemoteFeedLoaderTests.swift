@@ -37,9 +37,8 @@ final class RemoteFeedLoaderTests: XCTestCase {
 
     func test_init_doesNotRequestDataFromURL() {
         // arrange
-        let url = URL(string: "https://a-url.com")!
         let client = HTTPClientSpy()
-        _ = RemoteFeedLoader(url: url, client: client)
+        _ = makeSUT(client: client)
         
         XCTAssertNil(client.requestURL)
     }
@@ -48,13 +47,19 @@ final class RemoteFeedLoaderTests: XCTestCase {
         // arrange
         let url = URL(string: "https://a-given-url.com")!
         let client = HTTPClientSpy()
-        let sut = RemoteFeedLoader(url: url, client: client)
+        let sut = makeSUT(url: url, client: client)
         
         // act
         sut.load()
         
         // assert
         XCTAssertEqual(client.requestURL, url)
+    }
+    
+    // MARK: - Helper
+    
+    private func makeSUT(url: URL = URL(string: "https://a-url.com")!, client: HTTPClient) -> RemoteFeedLoader {
+        return RemoteFeedLoader(url: url, client: client)
     }
 }
 
@@ -68,4 +73,5 @@ final class RemoteFeedLoaderTests: XCTestCase {
  - We can remove shared instance and have abstract class
  - Since the protocol is better as abstraction, we can remove class keyword
  - When we load we can loading from multiple locations, so URL is the detail of the implementation of RemoteFeedLoader, it should not be in the public interface
+ Since there is a code duplication, it can be refactored --> factory method to have makeSUT() -> RemoteFeedLoader
  */
