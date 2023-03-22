@@ -25,14 +25,6 @@ protocol HTTPClient {
     func get(from url: URL)
 }
 
-class HTTPClientSpy: HTTPClient {
-    func get(from url: URL) {
-        requestURL = url
-    }
-    
-    internal private(set) var requestURL: URL?
-}
-
 final class RemoteFeedLoaderTests: XCTestCase {
 
     func test_init_doesNotRequestDataFromURL() {
@@ -62,6 +54,14 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let sut = RemoteFeedLoader(url: url, client: client)
         return (sut, client)
     }
+    
+    private class HTTPClientSpy: HTTPClient {
+        var requestURL: URL?
+        
+        func get(from url: URL) {
+            requestURL = url
+        }
+    }
 }
 
 /*
@@ -75,4 +75,5 @@ final class RemoteFeedLoaderTests: XCTestCase {
  - Since the protocol is better as abstraction, we can remove class keyword
  - When we load we can loading from multiple locations, so URL is the detail of the implementation of RemoteFeedLoader, it should not be in the public interface
  Since there is a code duplication, it can be refactored --> factory method to have makeSUT() -> RemoteFeedLoader
+ - Spy class is not production code, so we can move it to test class scope
  */
