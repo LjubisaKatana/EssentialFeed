@@ -6,24 +6,7 @@
 //
 
 import XCTest
-
-class RemoteFeedLoader {
-    let url: URL
-    let client: HTTPClient
-    
-    init(url: URL, client: HTTPClient) {
-        self.url = url
-        self.client = client
-    }
-    
-    func load() {
-        client.get(from: url)
-    }
-}
-
-protocol HTTPClient {
-    func get(from url: URL)
-}
+import EssentialFeed
 
 final class RemoteFeedLoaderTests: XCTestCase {
 
@@ -98,6 +81,7 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - Spy class is not production code, so we can move it to test class scope
  - I choose to net having a Singleton for the HTTPClient because of that there is no reason to be a Singleton, We don't want to have one instance per application here. And with a dependency injection we keep our code modular. By using the Singleton or shared instance we may introduce tight coupling between modules
  - HTTPClient become the abstract class, and does it have to be AC? It's just contract, defining which external functionality the RemoteFeedLoader needs, so protocol is more convenient to define a contract
+ - Extract production component to production folder and add access level
  */
 
 
