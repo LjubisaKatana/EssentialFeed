@@ -8,16 +8,21 @@
 import XCTest
 
 class RemoteFeedLoader {
+    let client: HTTPClient
+    
+    init(client: HTTPClient) {
+        self.client = client
+    }
     
     func load() {
-        HTTPClient.shared.get(from: URL(string: "https://a-url.com")!)
+        client.get(from: URL(string: "https://a-url.com")!)
     }
 }
 
-class HTTPClient {
+class HTTPClient { // This is the abstract class, check the get method it's just a signature
     // with shared instance we're mixing responsibilities. Responsibility of invoking a method in an object and locating this object
     // So if we inject our client we have more control
-    static var shared = HTTPClient() // this is not singleton anymore it's global shared instance
+//    static var shared = HTTPClient() // this is not singleton anymore it's global shared instance
     
     func get(from url: URL) {}
 }
@@ -35,8 +40,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
     func test_init_doesNotRequestDataFromURL() {
         // arrange
         let client = HTTPClientSpy()
-        HTTPClient.shared = client
-        _ = RemoteFeedLoader()
+        _ = RemoteFeedLoader(client: client)
         
         XCTAssertNil(client.requestURL)
     }
@@ -44,8 +48,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
     func test_load_requestDataFromURL() {
         // arrange
         let client = HTTPClientSpy()
-        HTTPClient.shared = client
-        let sut = RemoteFeedLoader()
+        let sut = RemoteFeedLoader(client: client)
         
         // act
         sut.load()
