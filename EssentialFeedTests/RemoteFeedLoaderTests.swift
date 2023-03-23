@@ -43,6 +43,16 @@ final class RemoteFeedLoaderTests: XCTestCase {
         XCTAssertEqual(client.requestURLs, [url, url]) // we can assert order, equality and count. This is more better way to have good test
     }
     
+    func test_load_deliversErrorOnClientError() {
+        let (sut, client) = makeSUT()
+        client.error = NSError(domain: "Test", code: 0)
+        var capturedError: RemoteFeedLoader.Error?
+        sut.load { error in capturedError = error }
+        
+        XCTAssertEqual(capturedError, .connectivity)
+        
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(url: URL = URL(string: "https://a-url.com")!) -> (sut: RemoteFeedLoader, client: HTTPClientSpy) {
@@ -53,8 +63,12 @@ final class RemoteFeedLoaderTests: XCTestCase {
     
     private class HTTPClientSpy: HTTPClient {
         var requestURLs = [URL]()
+        var error: Error?
         
-        func get(from url: URL) {
+        func get(from url: URL, completion: @escaping (Error) -> Void) {
+            if let error = error {
+                completion(error)
+            }
             requestURLs.append(url)
         }
     }
@@ -102,6 +116,9 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - Extract production component to production folder and add access level
  - We have to guarantee to have last passed value when calling `load` method twice
  - Add property that hold array of URLs to have better test
+ - It's time to add some response from load method
+ - We can start with connectivity error --> domain error
+ 
  */
 
 
