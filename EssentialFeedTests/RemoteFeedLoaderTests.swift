@@ -45,11 +45,12 @@ final class RemoteFeedLoaderTests: XCTestCase {
     
     func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
-        client.error = NSError(domain: "Test", code: 0)
-        var capturedError: RemoteFeedLoader.Error?
-        sut.load { capturedError = $0 }
+        client.error = NSError(domain: "Test", code: 0) // we stub client here even though client is spy, we're mixing concepts now
         
-        XCTAssertEqual(capturedError, .connectivity)
+        var capturedErrors = [RemoteFeedLoader.Error]()
+        sut.load { capturedErrors.append($0) }
+        
+        XCTAssertEqual(capturedErrors, [.connectivity])
         
     }
     
@@ -118,7 +119,7 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - Add property that hold array of URLs to have better test
  - It's time to add some response from load method
  - We can start with connectivity error --> domain error
- 
+ - Again we check capturedErrors so we can guarantee number of errors in this case we want to have one error.
  */
 
 
