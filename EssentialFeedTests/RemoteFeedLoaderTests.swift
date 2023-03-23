@@ -30,6 +30,20 @@ final class RemoteFeedLoaderTests: XCTestCase {
         XCTAssertEqual(client.requestURL, url)
     }
     
+    func test_loadTwice_requestsDataFromURLTwice() {
+        // arrange
+        let url = URL(string: "https://a-given-url.com")!
+        let (sut, client) = makeSUT(url: url)
+        
+        // act
+        sut.load()
+        sut.load()
+        
+        // assert
+        XCTAssertEqual(client.requestURLCallCount, 2)
+        XCTAssertEqual(client.requestURL, url)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(url: URL = URL(string: "https://a-url.com")!) -> (sut: RemoteFeedLoader, client: HTTPClientSpy) {
@@ -39,9 +53,11 @@ final class RemoteFeedLoaderTests: XCTestCase {
     }
     
     private class HTTPClientSpy: HTTPClient {
+        var requestURLCallCount = 0
         var requestURL: URL?
         
         func get(from url: URL) {
+            requestURLCallCount += 1
             requestURL = url
         }
     }
@@ -82,6 +98,7 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - I choose to net having a Singleton for the HTTPClient because of that there is no reason to be a Singleton, We don't want to have one instance per application here. And with a dependency injection we keep our code modular. By using the Singleton or shared instance we may introduce tight coupling between modules
  - HTTPClient become the abstract class, and does it have to be AC? It's just contract, defining which external functionality the RemoteFeedLoader needs, so protocol is more convenient to define a contract
  - Extract production component to production folder and add access level
+ - We have to guarantee to have last passed value when calling `load` method twice
  */
 
 

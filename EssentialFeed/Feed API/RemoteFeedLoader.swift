@@ -22,5 +22,7 @@ public final class RemoteFeedLoader {
     
     public func load() {
         client.get(from: url)
+//        client.get(from: url) // this is the unexpected behaviour for example
+        // we have to guarantee to have last passed value
     }
 }
