@@ -15,7 +15,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let (_, client) = makeSUT()
         
         // assert
-        XCTAssertNil(client.requestURL)
+        XCTAssertTrue(client.requestURLs.isEmpty)
     }
     
     func test_load_requestsDataFromURL() {
@@ -27,7 +27,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         sut.load()
         
         // assert
-        XCTAssertEqual(client.requestURL, url)
+        XCTAssertEqual(client.requestURLs, [url])
     }
     
     func test_loadTwice_requestsDataFromURLTwice() {
@@ -53,10 +53,8 @@ final class RemoteFeedLoaderTests: XCTestCase {
     
     private class HTTPClientSpy: HTTPClient {
         var requestURLs = [URL]()
-        var requestURL: URL?
         
         func get(from url: URL) {
-            requestURL = url
             requestURLs.append(url)
         }
     }
@@ -98,6 +96,7 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - HTTPClient become the abstract class, and does it have to be AC? It's just contract, defining which external functionality the RemoteFeedLoader needs, so protocol is more convenient to define a contract
  - Extract production component to production folder and add access level
  - We have to guarantee to have last passed value when calling `load` method twice
+ - Add property that hold array of URLs to have better test
  */
 
 
