@@ -62,6 +62,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
 
 /* We start implementing the RemoteFeedLoader (API) module by following the Load Feed Use Case requirements.
  Learning Outcomes:
+ #1
  - How to test-drive an API layer implementation
  - Modular Design
  - Singletons: When and Why
@@ -69,6 +70,10 @@ final class RemoteFeedLoaderTests: XCTestCase {
  - Singletons: Refactoring steps to gradually remove tight coupling created by singletons
  - Controlling your dependencies: Locating globally shared instances (Implicit) vs. Injecting dependencies (Explicit)
  - Controlling your dependencies: Dependency injection
+ 
+ #2
+ - Understand the trade-offs of access control for testing purposes
+ - Expand behaviour checking (and coverage) using test spy objects
  */
 
 
@@ -100,4 +105,8 @@ HTTP clients are often implemented as singletons just because it may be more "co
  */
 
 
-//There are many reasons to have different implementations of an HTTPClient. For example, you can create test-double implementations for testing purposes. You can also change between frameworks such as Moya, Alamofire, and URLSession without breaking other modules. You may also want to provide an implementation with hardcoded behaviour for demoing purposes. And so on!
+//#1 There are many reasons to have different implementations of an HTTPClient. For example, you can create test-double implementations for testing purposes. You can also change between frameworks such as Moya, Alamofire, and URLSession without breaking other modules. You may also want to provide an implementation with hardcoded behaviour for demoing purposes. And so on!
+
+// #2 Test visibility: public vs @testable (internal) We start by moving the RemoteFeedLoader class and the HTTPClient protocol to a new production file to facilitate our development workflow. By doing so, our test target doesn’t have access to our internal types anymore; thus we need to decide whether we will make our types public or leave them as internal and add the @testable attribute when importing our production module in the tests. We decided the former as we can test the Feed API module through the public interfaces it contains so that we can test the expected behaviour as a client of the module. Another benefit of this approach is that we can now make changes to any internal or private implementation details without breaking our tests.
+
+// #2 Enhancing test assertions Our previous HTTPClientSpy was capturing the URL passed to the HTTPClient in its requestedURL property, which we then used to assert that the RemoteFeedLoader was giving the correct value to the client. Although this approach (capturing the received URL in a property) checks the desired behaviours correctly, it won’t notify us in the case we mistakenly execute a request more than once. To make sure we cover every case, we introduce a new array of URLs named requestedURLs in the HTTPClientSpy where we append all received URLs when get(from:) is invoked. We now still can check that we capture the appropriate URL values, but we can also assert how many times get(from:) was invoked as well.
