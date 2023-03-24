@@ -65,16 +65,18 @@ final class RemoteFeedLoaderTests: XCTestCase {
     }
     
     private class HTTPClientSpy: HTTPClient {
-        var requestURLs = [URL]()
-        var completions = [(Error) -> Void]()
+        private var messages = [(url: URL, completion: (Error) -> Void)]()
+        
+        var requestURLs: [URL] {
+            return messages.map { $0.url }
+        }
         
         func get(from url: URL, completion: @escaping (Error) -> Void) {
-            completions.append(completion)
-            requestURLs.append(url)
+            messages.append((url, completion))
         }
         
         func complete(with error: Error, at index: Int = 0) {
-            completions[index](error)
+            messages[index].completion(error)
         }
     }
 }
@@ -124,6 +126,7 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - It's time to add some response from load method
  - We can start with connectivity error --> domain error
  - Again we check capturedErrors so we can guarantee number of errors in this case we want to have one error.
+ - We can have messages array of signature of the get method and return instead of requestedURLs and completions
  */
 
 
