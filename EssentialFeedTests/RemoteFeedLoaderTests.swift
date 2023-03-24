@@ -79,26 +79,26 @@ final class RemoteFeedLoaderTests: XCTestCase {
     }
     
     private class HTTPClientSpy: HTTPClient {
-        private var messages = [(url: URL, completion: (Error?, HTTPURLResponse?) -> Void)]()
+        private var messages = [(url: URL, completion: (HTTPClientResult) -> Void)]()
         
         var requestURLs: [URL] {
             return messages.map { $0.url }
         }
         
-        func get(from url: URL, completion: @escaping (Error?, HTTPURLResponse?) -> Void) {
+        func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
             messages.append((url, completion))
         }
         
         func complete(with error: Error, at index: Int = 0) {
-            messages[index].completion(error, nil)
+            messages[index].completion(.failure(error))
         }
         
         func complete(withStatusCode code: Int, at index: Int = 0) {
             let response = HTTPURLResponse(url: requestURLs[index],
                                            statusCode: code,
                                            httpVersion: nil,
-                                           headerFields: nil)
-            messages[index].completion(nil, response)
+                                           headerFields: nil)!
+            messages[index].completion(.success(response))
         }
     }
 }
@@ -152,6 +152,8 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - It's time to delivers invalidData for non 200 HTTP responses
  - The logical question is, what about the rest of the status codes?
  - So how munch is enough?
+ - We can provide some basic status codes
+ - Replace with enum optional types to have success/failure cases
  */
 
 
