@@ -24,7 +24,7 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let (sut, client) = makeSUT(url: url)
         
         // act
-        sut.load()
+        sut.load { _ in }
         
         // assert
         XCTAssertEqual(client.requestURLs, [url])
@@ -36,8 +36,8 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let (sut, client) = makeSUT(url: url)
         
         // act
-        sut.load()
-        sut.load()
+        sut.load { _ in }
+        sut.load { _ in }
         
         // assert
         XCTAssertEqual(client.requestURLs, [url, url]) // we can assert order, equality and count. This is more better way to have good test
@@ -53,7 +53,6 @@ final class RemoteFeedLoaderTests: XCTestCase {
         client.complete(with: clientError, at: 0)
         
         XCTAssertEqual(capturedErrors, [.connectivity])
-        
     }
     
     // MARK: - Helpers
