@@ -30,11 +30,8 @@ public final class RemoteFeedLoader {
             if response != nil {
                 completion(.invalidData)
             } else {
-                completion(.connectivity) //
+                completion(.connectivity)
             }
-            
         }
-//        client.get(from: url) // this is the unexpected behaviour for example
-        // we have to guarantee to have last passed value
     }
 }
