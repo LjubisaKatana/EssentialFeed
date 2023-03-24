@@ -58,12 +58,16 @@ final class RemoteFeedLoaderTests: XCTestCase {
     func test_load_deliversErrorOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
         
-        var capturedErrors = [RemoteFeedLoader.Error]()
-        sut.load { capturedErrors.append($0) }
+        let samples = [199, 201, 300, 400, 500]
         
-        client.complete(withStatusCode: 400)
-        
-        XCTAssertEqual(capturedErrors, [.invalidData])
+        samples.enumerated().forEach { index, code in
+            var capturedErrors = [RemoteFeedLoader.Error]()
+            sut.load { capturedErrors.append($0) }
+            
+            client.complete(withStatusCode: code, at: index)
+            
+            XCTAssertEqual(capturedErrors, [.invalidData])
+        }
     }
     
     // MARK: - Helpers
@@ -146,6 +150,8 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - Again we check capturedErrors so we can guarantee number of errors in this case we want to have one error.
  - We can have messages array of signature of the get method and return instead of requestedURLs and completions
  - It's time to delivers invalidData for non 200 HTTP responses
+ - The logical question is, what about the rest of the status codes?
+ - So how munch is enough?
  */
 
 
