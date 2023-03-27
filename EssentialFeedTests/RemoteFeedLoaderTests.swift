@@ -117,6 +117,12 @@ final class RemoteFeedLoaderTests: XCTestCase {
  #2
  - Understand the trade-offs of access control for testing purposes
  - Expand behaviour checking (and coverage) using test spy objects
+ 
+ #3
+ - Handling network errors
+ - Differences between stubbing and spying when unit testing
+ - How to extend code coverage by using samples of values to test specific test cases
+ - Design better code with enums to make invalid paths unrepresentable
  */
 
 
@@ -162,3 +168,6 @@ HTTP clients are often implemented as singletons just because it may be more "co
 // #2 Test visibility: public vs @testable (internal) We start by moving the RemoteFeedLoader class and the HTTPClient protocol to a new production file to facilitate our development workflow. By doing so, our test target doesn’t have access to our internal types anymore; thus we need to decide whether we will make our types public or leave them as internal and add the @testable attribute when importing our production module in the tests. We decided the former as we can test the Feed API module through the public interfaces it contains so that we can test the expected behaviour as a client of the module. Another benefit of this approach is that we can now make changes to any internal or private implementation details without breaking our tests.
 
 // #2 Enhancing test assertions Our previous HTTPClientSpy was capturing the URL passed to the HTTPClient in its requestedURL property, which we then used to assert that the RemoteFeedLoader was giving the correct value to the client. Although this approach (capturing the received URL in a property) checks the desired behaviours correctly, it won’t notify us in the case we mistakenly execute a request more than once. To make sure we cover every case, we introduce a new array of URLs named requestedURLs in the HTTPClientSpy where we append all received URLs when get(from:) is invoked. We now still can check that we capture the appropriate URL values, but we can also assert how many times get(from:) was invoked as well.
+
+// #3 Spies are usually test-helpers with a single responsibility of capturing the received messages. To remove the stubbed behaviour and give our spy a sole responsibility again, we altered its implementation to keep track of all the completions passed through the HTTPClient's get(from:completion:).
+
