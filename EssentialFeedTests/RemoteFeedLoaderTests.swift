@@ -73,6 +73,18 @@ final class RemoteFeedLoaderTests: XCTestCase {
         }
     }
     
+    func test_load_deliversNoItemsOn200HTTPResponseWithEmptyList() {
+        let (sut, client) = makeSUT()
+        
+        var capturedResults = [RemoteFeedLoader.Result]()
+        sut.load { capturedResults.append($0) }
+        
+        let emptyListJSON = Data("{\"items\": []}".utf8)
+        client.complete(withStatusCode: 200, data: emptyListJSON)
+        
+        XCTAssertEqual(capturedResults, [.success([])])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(url: URL = URL(string: "https://a-url.com")!) -> (sut: RemoteFeedLoader, client: HTTPClientSpy) {
@@ -176,7 +188,7 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - Now it's time to have a test with response ok 200 but with InvalidJSON
  - We extend our success case with Data so we can provide json data from response
  - We can refactor code a bit by adding `expect` helper method and remove duplication
- - And now happy path --> response 200 with valid json data
+ - And now happy path --> response 200 with empty list
  */
 
 
