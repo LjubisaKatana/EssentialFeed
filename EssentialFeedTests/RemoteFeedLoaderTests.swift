@@ -70,6 +70,33 @@ final class RemoteFeedLoaderTests: XCTestCase {
         }
     }
     
+    
+    
+    
+    
+    func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
+        let (sut, client) = makeSUT()
+        
+        
+        
+        var capturedErrors = [RemoteFeedLoader.Error]()
+        sut.load { capturedErrors.append($0) }
+        
+        
+        let invalidJSON = Data(bytes: "invalid json".utf8)
+        
+        
+        client.complete(withStatusCode: 200, data: invalidJSON)
+        
+        XCTAssertEqual(capturedErrors, [.invalidData])
+        
+        
+    }
+    
+    
+    
+    
+    
     // MARK: - Helpers
     
     private func makeSUT(url: URL = URL(string: "https://a-url.com")!) -> (sut: RemoteFeedLoader, client: HTTPClientSpy) {
@@ -93,12 +120,12 @@ final class RemoteFeedLoaderTests: XCTestCase {
             messages[index].completion(.failure(error))
         }
         
-        func complete(withStatusCode code: Int, at index: Int = 0) {
+        func complete(withStatusCode code: Int, data: Data = Data(), at index: Int = 0) {
             let response = HTTPURLResponse(url: requestURLs[index],
                                            statusCode: code,
                                            httpVersion: nil,
                                            headerFields: nil)!
-            messages[index].completion(.success(response))
+            messages[index].completion(.success(data, response))
         }
     }
 }
@@ -160,6 +187,8 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - So how munch is enough?
  - We can provide some basic status codes
  - Replace with enum optional types to have success/failure cases
+ - Now it's time to have a test with response ok 200 but with InvalidJSON
+ - We extend our success case with Data so we can provide json data from response
  */
 
 
