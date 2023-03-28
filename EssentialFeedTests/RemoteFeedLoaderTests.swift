@@ -82,12 +82,12 @@ final class RemoteFeedLoaderTests: XCTestCase {
     }
     
     private func expect(_ sut: RemoteFeedLoader, toCompleteWithError error: RemoteFeedLoader.Error, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
-             var capturedErrors = [RemoteFeedLoader.Error]()
-             sut.load { capturedErrors.append($0) }
+             var capturedResults = [RemoteFeedLoader.Result]()
+        sut.load { capturedResults.append($0) }
 
              action()
 
-             XCTAssertEqual(capturedErrors, [error], file: file, line: line)
+        XCTAssertEqual(capturedResults, [.failure(error)], file: file, line: line)
          }
     
 //    @available(swift, deprecated: 5, message: "use `init(_:)` instead")
@@ -176,7 +176,9 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - Now it's time to have a test with response ok 200 but with InvalidJSON
  - We extend our success case with Data so we can provide json data from response
  - We can refactor code a bit by adding `expect` helper method and remove duplication
+ - And now happy path --> response 200 with valid json data
  */
+
 
 
 //#1 There are many reasons to have different implementations of an HTTPClient. For example, you can create test-double implementations for testing purposes. You can also change between frameworks such as Moya, Alamofire, and URLSession without breaking other modules. You may also want to provide an implementation with hardcoded behaviour for demoing purposes. And so on!
