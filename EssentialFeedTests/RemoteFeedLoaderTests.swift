@@ -46,13 +46,10 @@ final class RemoteFeedLoaderTests: XCTestCase {
     func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
         
-        var capturedErrors = [RemoteFeedLoader.Error]()
-        sut.load { capturedErrors.append($0) }
-        
-        let clientError = NSError(domain: "Test", code: 0)
-        client.complete(with: clientError, at: 0)
-        
-        XCTAssertEqual(capturedErrors, [.connectivity])
+        expect(sut, toCompleteWithError: .connectivity, when: {
+            let clientError = NSError(domain: "Test", code: 0)
+            client.complete(with: clientError, at: 0)
+        })
     }
     
     func test_load_deliversErrorOnNon200HTTPResponse() {
@@ -61,25 +58,19 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let samples = [199, 201, 300, 400, 500]
         
         samples.enumerated().forEach { index, code in
-            var capturedErrors = [RemoteFeedLoader.Error]()
-            sut.load { capturedErrors.append($0) }
-            
-            client.complete(withStatusCode: code, at: index)
-            
-            XCTAssertEqual(capturedErrors, [.invalidData])
+            expect(sut, toCompleteWithError: .invalidData, when: {
+                client.complete(withStatusCode: code, at: index)
+            })
         }
     }
     
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
         
-        var capturedErrors = [RemoteFeedLoader.Error]()
-        sut.load { capturedErrors.append($0) }
-        
-        let invalidJSON = Data("invalid json".utf8)
-        client.complete(withStatusCode: 200, data: invalidJSON)
-        
-        XCTAssertEqual(capturedErrors, [.invalidData])
+        expect(sut, toCompleteWithError: .invalidData) {
+            let invalidJSON = Data("invalid json".utf8)
+            client.complete(withStatusCode: 200, data: invalidJSON)
+        }
     }
     
     // MARK: - Helpers
@@ -89,6 +80,15 @@ final class RemoteFeedLoaderTests: XCTestCase {
         let sut = RemoteFeedLoader(url: url, client: client)
         return (sut, client)
     }
+    
+    private func expect(_ sut: RemoteFeedLoader, toCompleteWithError error: RemoteFeedLoader.Error, when action: () -> Void, file: StaticString = #filePath, line: UInt = #line) {
+             var capturedErrors = [RemoteFeedLoader.Error]()
+             sut.load { capturedErrors.append($0) }
+
+             action()
+
+             XCTAssertEqual(capturedErrors, [error], file: file, line: line)
+         }
     
 //    @available(swift, deprecated: 5, message: "use `init(_:)` instead")
     private class HTTPClientSpy: HTTPClient {
@@ -175,6 +175,7 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - Replace with enum optional types to have success/failure cases
  - Now it's time to have a test with response ok 200 but with InvalidJSON
  - We extend our success case with Data so we can provide json data from response
+ - We can refactor code a bit by adding `expect` helper method and remove duplication
  */
 
 
