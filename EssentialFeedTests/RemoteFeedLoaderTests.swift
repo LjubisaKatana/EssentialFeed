@@ -237,6 +237,7 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - Since description and location are optional the type is not match as a json: [String: Any]) so we can `reduce` it into a dictionary.
  - With Swift new improvements we can switch `reduce` to `compactMapValues` so we can have more readable syntax
  - We can decouple the Feed Feature module from API implementation details by adding `Item` struct
+ - We can map result and data by using mapper
  */
 
 
