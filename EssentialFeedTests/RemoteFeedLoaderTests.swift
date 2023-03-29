@@ -238,6 +238,8 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - With Swift new improvements we can switch `reduce` to `compactMapValues` so we can have more readable syntax
  - We can decouple the Feed Feature module from API implementation details by adding `Item` struct
  - We can map result and data by using mapper
+ - Move related inside of Mapper scope
+ - We can switch if/else statements to do/catch, it's about preferences
  */
 
 
