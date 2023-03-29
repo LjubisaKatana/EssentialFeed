@@ -85,37 +85,19 @@ final class RemoteFeedLoaderTests: XCTestCase {
     func test_load_deliversNoItemsOn200HTTPResponseWithJSONItems() {
         let (sut, client) = makeSUT()
         
-        let item1 = FeedItem(id: UUID(),
-                             description: nil,
-                             location: nil,
+        let item1 = makeItem(id: UUID(),
                              imageURL: URL(string: "https://a-url.com")!)
         
         
-        let item1JSON = [
-            "id": item1.id.uuidString,
-            "image": item1.imageURL.absoluteString
-        ]
-        
-        let item2 = FeedItem(id: UUID(),
+        let item2 = makeItem(id: UUID(),
                              description: "a description",
                              location: "a location",
                              imageURL: URL(string: "https://another-url.com")!)
         
+        let items = [item1.model, item2.model]
         
-        let item2JSON = [
-            "id": item2.id.uuidString,
-            "description": item2.description,
-            "location": item2.location,
-            "image": item2.imageURL.absoluteString
-        ]
-    
-        
-        let itemsJSON = [
-            "items": [item1JSON, item2JSON]
-        ]
-        
-        expect(sut, toCompleteWith: .success([item1, item2])) {
-            let json = try! JSONSerialization.data(withJSONObject: itemsJSON)
+        expect(sut, toCompleteWith: .success(items)) {
+            let json = makeItemsJSON(items: [item1.json, item2.json])
             client.complete(withStatusCode: 200, data: json)
         }
     }
@@ -155,6 +137,11 @@ final class RemoteFeedLoaderTests: XCTestCase {
 //        ].compactMapValues { $0 }
 //
         return (item, json)
+    }
+    
+    private func makeItemsJSON(items: [[String: Any]]) -> Data {
+        let json = ["items": items]
+        return try! JSONSerialization.data(withJSONObject: json)
     }
     
     private func expect(_ sut: RemoteFeedLoader,
