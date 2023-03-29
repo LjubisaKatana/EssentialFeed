@@ -115,27 +115,13 @@ final class RemoteFeedLoaderTests: XCTestCase {
         
         let item = FeedItem(id: id, description: description, location: location, imageURL: imageURL)
         
-        
-         // we use reduce to match the expected type in tuple ie json: [String: Any]
-         // switch reduce with new function
         let json = [
             "id": id.uuidString,
             "description": description,
             "location": location,
             "image": imageURL.absoluteString
-        ].reduce(into: [String: Any]()) { (newDictionary, element) in
-            if let value = element.value {
-                newDictionary[element.key] = value
-            }
-        }
-        
-//        let json = [
-//            "id": id.uuidString,
-//            "description": description,
-//            "location": location,
-//            "image": imageURL.absoluteString
-//        ].compactMapValues { $0 }
-//
+        ].compactMapValues { $0 }
+
         return (item, json)
     }
     
@@ -248,6 +234,7 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - Add test with HTTP response 200 and valid json data
  - It's time to add decodable
  - Since description and location are optional the type is not match as a json: [String: Any]) so we can `reduce` it into a dictionary.
+ - With Swift new improvements we can switch `reduce` to `compactMapValues` so we can have more readable syntax
  */
 
 
