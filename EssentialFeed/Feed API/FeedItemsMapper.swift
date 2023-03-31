@@ -1,5 +1,5 @@
 //
-//  FeedItemMaper.swift
+//  FeedItemsMapper.swift
 //  EssentialFeed
 //
 //  Created by Ljubisa Katana on 31.3.23..
