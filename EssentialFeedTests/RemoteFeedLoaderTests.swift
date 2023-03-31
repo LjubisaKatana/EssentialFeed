@@ -252,6 +252,7 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - We can map result and data by using mapper
  - Move related inside of Mapper scope
  - We can switch if/else statements to do/catch, it's about preferences
+ - We can move HTTPClient to own file and RemoteItemMapper as well
  */
 
 
