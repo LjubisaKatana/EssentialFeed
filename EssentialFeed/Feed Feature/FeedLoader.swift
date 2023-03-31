@@ -7,16 +7,14 @@
 
 import Foundation
 
-enum LoadFeedResult {
+public enum LoadFeedResult<Error: Swift.Error> {
     case success([FeedItem])
-    
-    // I can start with Error type but it can bear risk.
-    // Can unnecessary damage/complicate the current design.
-    // On the other hand error case we don't know and don't need to know yet
-    // all errors this feature will have to handle.
-    case error(Error)
+    case failure(Error)
 }
 
+extension LoadFeedResult: Equatable where Error: Equatable {}
+
 protocol FeedLoader {
-    func load(completions: @escaping(LoadFeedResult) -> Void)
+    associatedtype Error: Swift.Error
+    func load(completions: @escaping(LoadFeedResult<Error>) -> Void)
 }
