@@ -105,11 +105,26 @@ final class RemoteFeedLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(url: URL = URL(string: "https://a-url.com")!) -> (sut: RemoteFeedLoader,
+    private func makeSUT(url: URL = URL(string: "https://a-url.com")!,
+                         file: StaticString = #filePath,
+                         line: UInt = #line) -> (sut: RemoteFeedLoader,
                                                                            client: HTTPClientSpy) {
         let client = HTTPClientSpy()
         let sut = RemoteFeedLoader(url: url, client: client)
+        
+        trackForMemoryLeaks(instance: client, file: file, line: line)
+        trackForMemoryLeaks(instance: sut, file: file, line: line)
+        
         return (sut, client)
+    }
+    
+    private func trackForMemoryLeaks(instance: AnyObject,
+                                     file: StaticString = #filePath,
+                                     line: UInt = #line ) {
+        
+        addTeardownBlock { [weak instance] in // run after each test
+            XCTAssertNil(instance, "Instance should have been deallocated, Potential memory leak", file: file, line: line)
+        }
     }
     
     private func makeItem(id: UUID, description: String? = nil, location: String? = nil, imageURL: URL) -> (model: FeedItem, json: [String: Any]) {
@@ -253,6 +268,7 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - Move related inside of Mapper scope
  - We can switch if/else statements to do/catch, it's about preferences
  - We can move HTTPClient to own file and RemoteItemMapper as well
+ - We extract logic from load function to map itself and capturing self which means we can encounter retain cycle, where we have to add some safeties, and protect it from memory leak.
  */
 
 
