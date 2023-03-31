@@ -271,6 +271,7 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - We extract logic from load function to map itself and capturing self which means we can encounter retain cycle, where we have to add some safeties, and protect it from memory leak.
  - We add memory leak checker
  - Now we can call map function, but it's better to have it as a static func to remove self
+ - Move mapping logic to the FeedItemsMapper
  */
 
 
