@@ -225,6 +225,11 @@ final class RemoteFeedLoaderTests: XCTestCase {
  - Mapping JSON data to native models using the Decodable protocol
  - How to protect your architecture abstractions by working with domain-specific models
  - How to simplify tests leveraging factory methods and test helper functions
+ 
+ #5
+ - Automating memory leak detection with tests
+ - Preventing a common async bug
+ - More refactor techniques
  */
 
 
