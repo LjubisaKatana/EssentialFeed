@@ -190,6 +190,12 @@ final class RemoteFeedLoaderTests: XCTestCase {
  - Differences between stubbing and spying when unit testing
  - How to extend code coverage by using samples of values to test specific test cases
  - Design better code with enums to make invalid paths unrepresentable
+ 
+ #4
+ - Differences and trade-offs between mocking vs. testing collaborators in integration
+ - Mapping JSON data to native models using the Decodable protocol
+ - How to protect your architecture abstractions by working with domain-specific models
+ - How to simplify tests leveraging factory methods and test helper functions
  */
 
 
@@ -235,7 +241,13 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - Add test with HTTP response 200 and valid json data
  - It's time to add decodable
  - Since description and location are optional the type is not match as a json: [String: Any]) so we can `reduce` it into a dictionary.
- - With Swift new improvements we can switch `reduce` to `compactMapValues` so we can have more readable syntax
+ - With Swift 5 we can switch `reduce` to `compactMapValues` so we can have more readable syntax, where we remove nil values from Dictionary
+ let json = [
+   "id": id.uuidString,
+   "description": description,
+   "location": location,
+   "image": imageURL.absoluteString
+ ].compactMapValues { $0 }
  - We can decouple the Feed Feature module from API implementation details by adding `Item` struct
  - We can map result and data by using mapper
  - Move related inside of Mapper scope
@@ -252,3 +264,8 @@ HTTP clients are often implemented as singletons just because it may be more "co
 
 // #3 Spies are usually test-helpers with a single responsibility of capturing the received messages. To remove the stubbed behaviour and give our spy a sole responsibility again, we altered its implementation to keep track of all the completions passed through the HTTPClient's get(from:completion:).
 
+
+/* #4
+Inline JSON vs external files
+Another decision we made while dealing with the JSON data was to create them inline in the tests (hardcoded in code, matching the backend payload contract) and then extract their creation into helper functions. Oppositely, we could have formed an external text file containing “mocked” JSON matching the payload and load its contents every time the test ran. Although a valid and common approach, we deemed such an activity an overkill for now since the JSON representation is simple enough (and readable) to be represented in code. If we keep the JSON in external text files, we would have to read those files from the disk which seemed like an overhead (slowing down our tests) and unnecessary expense at the moment (those tiny slowdowns build up over time and can become a problem). Additionally, such solutions can make debugging more difficult as the JSON values live “far away” from the tests (external files) which can complicate our research in the case of a test failure.
+*/
