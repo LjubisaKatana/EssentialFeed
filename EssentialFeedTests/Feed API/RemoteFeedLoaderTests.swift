@@ -292,6 +292,7 @@ HTTP clients are often implemented as singletons just because it may be more "co
  - Now we can call map function, but it's better to have it as a static func to remove self
  - Move mapping logic to the FeedItemsMapper
  - Important thing is that we should somehow test if we can invoke the function load after RemoteFeedLoader instance is deallocated
+ - RemoteFeedLoader conforms to FeedLoader, but we have constraints with Equatable for the LoadFeedResult
  */
 
 
