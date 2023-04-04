@@ -247,6 +247,13 @@ final class RemoteFeedLoaderTests: XCTestCase {
  - Automating memory leak detection with tests
  - Preventing a common async bug
  - More refactor techniques
+ 
+ #6
+ - Protecting the production code from test details
+ - Maintain modularity by protecting high-level abstractions from low-level implementation details
+ - Dealing with potential issues when using the Swift.Error protocol
+ - Pattern matching using Swift enums
+ - Assert asynchronous behavior with XCTestCase expectations
  */
 
 
@@ -327,3 +334,29 @@ HTTP clients are often implemented as singletons just because it may be more "co
 Inline JSON vs external files
 Another decision we made while dealing with the JSON data was to create them inline in the tests (hardcoded in code, matching the backend payload contract) and then extract their creation into helper functions. Oppositely, we could have formed an external text file containing “mocked” JSON matching the payload and load its contents every time the test ran. Although a valid and common approach, we deemed such an activity an overkill for now since the JSON representation is simple enough (and readable) to be represented in code. If we keep the JSON in external text files, we would have to read those files from the disk which seemed like an overhead (slowing down our tests) and unnecessary expense at the moment (those tiny slowdowns build up over time and can become a problem). Additionally, such solutions can make debugging more difficult as the JSON values live “far away” from the tests (external files) which can complicate our research in the case of a test failure.
 */
+
+
+/*
+ #5 - nn
+ */
+
+/*
+ #6
+ The case against a reusable/generic Result
+ “Why haven’t you made the Result a generic type yet?!”
+
+ Initially, the way we chose to structure and represent the output of the Feed API and the Feed Feature module is through domain-specific result types: the RemoteFeedLoader.Result, the HTTPClientResult, and the LoadFeedResult enums. Although it’s a good idea to delay the abstraction and reuse of types unless required, the multiple representations of a result are starting to look like a DRY (Don’t Repeat Yourself) violation.
+
+ Instead of multiple result types, we could have created a generic version of a shared Result<Value, Error> and reuse it instead of all the domain-specific ones. Although this approach would solve the DRY violation, another potential issue could appear: “In which module should the reusable Result type live?” A possible solution would be to create and declare the generic Result type in a new Shared or Common module which all other modules could import/depend upon. However, such a solution could easily complicate or potentially compromise our system’s modularity as our modules would have a new dependency to handle and maintain. We could also choose at this time to leave the reusable Result type in the Feed Feature module since all other modules seem to depend on it already (although that’s a huge assumption to make so early in the development cycle).
+
+ None of those solutions seem ideal, so we can defer making a decision until we learn more about our system’s needs.
+
+ If you’re using Swift 5 or above, you can use the Swift.Result type from the standard library to solve this problem! Better yet, since the generic Swift.Result is a Swift standard library type, we can more easily compose our solutions with external frameworks (including 3rd-party) in the future. Later on in the course, you’ll learn how to take advantage of the standard  Swift.Result type.
+
+ The case against a domain-specific Feed Feature Error type (for now)
+ A common modularity challenge is how to protect our high-level abstractions from low-level implementation details. Typed errors are one of those problems and one of the reasons why the Swift (a strongly typed language) team decided to go with untyped errors (relying on the empty Swift.Error protocol that must be cast in runtime) in its native error handling features: they don’t want errors to break modularity/source code compatibility over time.
+
+ We faced the same dilemma. By making the RemoteFeedLoader class (lower-level Feed API module) conform to the FeedLoader protocol (higher-level Feed Feature module), we need to think about the incompatibility of errors that the corresponding modules hold. We decided that the LoadFeedResult enum, the general purpose result of the Feed Feature (high-level module), should have a failure case holding an associated value of the standard Swift.Error protocol to hide the low-level details from the high-level module. Then, the RemoteFeedLoader from the Feed API (lower-level module) implements the high-level protocol and, in the case of a failure, completes with its domain-specific typed error (enum) which conforms to the Swift.Error protocol.
+
+ We chose to structure our types as such because the RemoteFeedLoader’s domain-specific Error enum type is a lower-level implementation detail of the Feed API module. Thus, we don't want to expose it in the higher-level Feed Feature module (at least yet–we might do it in the future). If we did so then, the Feed Feature would be coupled with implementation details of other lower-level modules and would break the system’s modular nature.
+ */
