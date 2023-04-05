@@ -46,7 +46,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
             exp.fulfill()
         }
         
-        URLSessionHTTPClient().get(from: url) { _ in }
+        makeSUT().get(from: url) { _ in }
         
         wait(for: [exp], timeout: 1)
     }
@@ -54,14 +54,11 @@ final class URLSessionHTTPClientTests: XCTestCase {
     func test_getFromURL_failsOnRequestError() {
         let url = URL(string: "http://any-url.com")!
         let requestError = NSError(domain: "any error", code: 1)
-        
         URLProtocolStub.stub(data: nil, response: nil, error: requestError)
-        
-        let sut = URLSessionHTTPClient()
         
         let exp = expectation(description: "Wait for completion")
         
-        sut.get(from: url) { result in
+        makeSUT().get(from: url) { result in
             switch result {
             case let .failure(receivedError as NSError):
 //                XCTAssertEqual(receivedError, error)
@@ -82,6 +79,11 @@ final class URLSessionHTTPClientTests: XCTestCase {
     }
 
     // MARK: - Helpers
+    
+    // TODO: - We should return abstraction instead of concrete implementation!
+    private func makeSUT() -> URLSessionHTTPClient { // Protect our test and API changes by using factory method
+        return URLSessionHTTPClient()
+    }
     
     private class URLProtocolStub: URLProtocol {
         private static var stub:  Stub?
@@ -152,6 +154,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
  - Expected error when enter url, but we don't know what exact error we should expect! So we have to prepare our test to have more information value
  - We can observe HTTP request
  - And on the same way we can test POST, ...
+ - By using factory method we protect our test and API changes
  */
 
 /*
