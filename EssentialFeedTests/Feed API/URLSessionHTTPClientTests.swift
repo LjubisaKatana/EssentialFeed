@@ -44,11 +44,11 @@ final class URLSessionHTTPClientTests: XCTestCase {
             case let .failure(receivedError as NSError):
 //                XCTAssertEqual(receivedError, error)
                 // iOS 14 +
-//                XCTAssertEqual(receivedError.domain, requestError.domain)
+                XCTAssertEqual(receivedError.domain, requestError.domain)
 //                XCTAssertEqual(receivedError.code, requestError.code)
                 
                 // Or if you don’t care about the specific error values, you can just make sure it’s not nil:
-                XCTAssertNotNil(receivedError)
+//                XCTAssertNotNil(receivedError)
             default:
                 XCTFail("Expected failure with error \(requestError), got \(result) instead")
             }
