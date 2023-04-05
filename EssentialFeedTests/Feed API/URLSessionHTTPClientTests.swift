@@ -81,8 +81,20 @@ final class URLSessionHTTPClientTests: XCTestCase {
     // MARK: - Helpers
     
     // TODO: - We should return abstraction instead of concrete implementation!
-    private func makeSUT() -> URLSessionHTTPClient { // Protect our test and API changes by using factory method
-        return URLSessionHTTPClient()
+    private func makeSUT(file: StaticString = #filePath,
+                         line: UInt = #line) -> URLSessionHTTPClient { // Protect our test and API changes by using factory method
+        let sut = URLSessionHTTPClient()
+        trackForMemoryLeaks(instance: sut, file: file, line: line)
+        return sut
+    }
+    
+    private func trackForMemoryLeaks(instance: AnyObject,
+                                     file: StaticString = #filePath,
+                                     line: UInt = #line) {
+        
+        addTeardownBlock { [weak instance] in // run after each test
+            XCTAssertNil(instance, "Instance should have been deallocated, Potential memory leak", file: file, line: line)
+        }
     }
     
     private class URLProtocolStub: URLProtocol {
