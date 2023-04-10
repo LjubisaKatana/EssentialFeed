@@ -230,6 +230,11 @@ final class URLSessionHTTPClientTests: XCTestCase {
  - Subclass and protocol-based mocking of classes we don’t own (e.g., the Foundation URLSession class)
  - The (little-known) URL Loading System
  - Intercepting and handling URL requests with URLProtocol
+ 
+ - Avoiding the downsides of mocking/stubbing
+ - The economics of test feedback
+ - Minimizing risk in the codebase and maximizing learning by testing all scenarios (including error, invalid and unhappy paths)
+ - Refactoring techniques for abstracting tests from implementation details
  */
 
 /*
