@@ -82,8 +82,8 @@ final class URLSessionHTTPClientTests: XCTestCase {
     // TODO: - We should return abstraction instead of concrete implementation!
     private func makeSUT(file: StaticString = #filePath,
                          line: UInt = #line) -> HTTPClient   { // Protect our test and API changes by using factory method
-        let sut = URLSession.shared
-//        trackForMemoryLeaks(instance: sut, file: file, line: line)
+        let sut = URLSessionHTTPClient()
+        trackForMemoryLeaks(instance: sut, file: file, line: line)
         return sut
     }
     
@@ -220,6 +220,8 @@ final class URLSessionHTTPClientTests: XCTestCase {
  - We can observe HTTP request
  - And on the same way we can test POST, ...
  - By using factory method we protect our test and API changes
+ 
+- We can have extension of foundation URLSession and that's good option, but we can have more control with an adapter type and have our own client version
  */
 
 /*
