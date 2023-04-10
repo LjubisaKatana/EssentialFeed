@@ -8,7 +8,7 @@
 import XCTest
 import EssentialFeed
 
-class URLSessionHTTPClient {
+class URLSessionHTTPClient: HTTPClient {
     private let session: URLSession
     
     init(session: URLSession = .shared) {
@@ -21,7 +21,7 @@ class URLSessionHTTPClient {
         session.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(.failure(error))
-            } else if let data = data, let  response = response as?  HTTPURLResponse {
+            } else if let data = data, let response = response as?  HTTPURLResponse {
                 completion(.success(data, response))
             } else {
                 completion(.failure(UnexpectedValuesRepresentation()))
@@ -103,7 +103,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
     
     // TODO: - We should return abstraction instead of concrete implementation!
     private func makeSUT(file: StaticString = #filePath,
-                         line: UInt = #line) -> URLSessionHTTPClient { // Protect our test and API changes by using factory method
+                         line: UInt = #line) -> HTTPClient { // Protect our test and API changes by using factory method
         let sut = URLSessionHTTPClient()
         trackForMemoryLeaks(instance: sut, file: file, line: line)
         return sut
