@@ -27,6 +27,8 @@ internal final class FeedItemsMapper {
         }
     }
     
+    private init() {}
+    
     // Explanation: "Since we're representing a value type (Int), a class constant and a computed var are equivalent in this context. It's a matter of personal preference."
     private static var OK_200: Int { return 200 } // Why we use this one instead of static let OK_200: Int = 200
     
