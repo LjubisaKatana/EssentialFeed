@@ -17,7 +17,6 @@ final class CacheFeedUseCaseTests: XCTestCase {
     }
     
     func test_save_requestsCacheDelete() {
-        let items = [uniqueItem(), uniqueItem()]
         let (sut, store) = makeSUT()
         
         sut.save(uniqueItems().models) { _ in }
@@ -26,7 +25,6 @@ final class CacheFeedUseCaseTests: XCTestCase {
     }
     
     func test_save_doesNotRequestCacheInsertionOnDeleteError() {
-        let items = [uniqueItem(), uniqueItem()]
         let (sut, store) = makeSUT()
         let deletionError = anyNSError()
         
