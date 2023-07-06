@@ -9,7 +9,7 @@ import XCTest
 import EssentialFeed
 
 final class LoadFeedFromCacheUseCaseTests: XCTestCase {
-
+    
     func test_init_doesNotMessageStoreUponCreation() {
         let (_, store) = makeSUT()
         
@@ -130,18 +130,17 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
     }
     
     func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
-            let store = FeedStoreSpy()
-            var sut: LocalFeedLoader? = LocalFeedLoader(store: store, currentDate: Date.init)
-
-            var receivedResults = [LocalFeedLoader.LoadResult]()
-            sut?.load { receivedResults.append($0) }
-
-            sut = nil
-            store.completeRetrievalWithEmptyCache()
-
-            XCTAssertTrue(receivedResults.isEmpty)
-        }
-
+        let store = FeedStoreSpy()
+        var sut: LocalFeedLoader? = LocalFeedLoader(store: store, currentDate: Date.init)
+        
+        var receivedResults = [LocalFeedLoader.LoadResult]()
+        sut?.load { receivedResults.append($0) }
+        
+        sut = nil
+        store.completeRetrievalWithEmptyCache()
+        
+        XCTAssertTrue(receivedResults.isEmpty)
+    } 
     
     // MARK: - Helpers
     
@@ -158,7 +157,7 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
     private func expected(_ sut: LocalFeedLoader, toCompleteWith expectedResult: LocalFeedLoader.LoadResult, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         
         let exp = expectation(description: "Wait for load completion")
-
+        
         sut.load { receivedResult in
             switch (receivedResult, expectedResult) {
             case let (.success(receivedImages), .success(expectedImages)):
@@ -170,36 +169,8 @@ final class LoadFeedFromCacheUseCaseTests: XCTestCase {
             }
             exp.fulfill()
         }
-
+        
         action()
         wait(for: [exp], timeout: 1.0)
-    }
-    
-    private func anyNSError() -> NSError {
-        return NSError(domain: "any error", code: 0)
-    }
-    
-    private func anyURL() -> URL {
-        return URL(string: "http://any-url.com")!
-    }
-    
-    private func uniqueImage() -> FeedImage {
-        return FeedImage(id: UUID(), description: "any", location: "any", url: anyURL())
-    }
-    
-    private func uniqueImageFeed() -> (models: [FeedImage], local: [LocalFeedImage]) {
-        let models = [uniqueImage(), uniqueImage()]
-        let local = models.map { LocalFeedImage(id: $0.id, description: $0.description, location: $0.location, url: $0.url)}
-        return (models, local)
-    }
-}
-
-private extension Date {
-    func adding(days: Int) -> Date {
-        return Calendar(identifier: .gregorian).date(byAdding: .day, value: days, to: self)!
-    }
-
-    func adding(seconds: TimeInterval) -> Date {
-        return self + seconds
     }
 }
