@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal final class FeedItemsMapper {
+ final class FeedItemsMapper {
     private struct Root: Decodable {
         let items: [RemoteFeedItem]
     }
@@ -17,7 +17,7 @@ internal final class FeedItemsMapper {
     // Explanation: "Since we're representing a value type (Int), a class constant and a computed var are equivalent in this context. It's a matter of personal preference."
     private static var OK_200: Int { return 200 } // Why we use this one instead of static let OK_200: Int = 200
     
-    internal static func map(_ data: Data, from response: HTTPURLResponse) throws -> [RemoteFeedItem] {
+     static func map(_ data: Data, from response: HTTPURLResponse) throws -> [RemoteFeedItem] {
         guard response.statusCode == OK_200, let root = try? JSONDecoder().decode(Root.self, from: data) else {
             throw RemoteFeedLoader.Error.invalidData
         }
