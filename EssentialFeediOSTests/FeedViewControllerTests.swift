@@ -17,9 +17,12 @@ final class FeedViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.loadCallCount, 0)
     }
     
+    // Finally, you should separate the tests in logical units still. For example, we are only testing the loading indicator logic in one test, and the load feed actions in another test, as we don’t want to mix concepts.
+    
     func test_loadFeedActions_requestFeedFromLoader() {
         let (sut, loader) = makeSUT()
         
+        // When combining assertions into one test, make sure to add good assertion messages to improve the documentation of the steps. Otherwise, it’ll be hard to debug failures or reason about the code later on.
         XCTAssertEqual(loader.loadCallCount, 0, "Expected no loading requests before view is loaded")
         
         sut.loadViewIfNeeded()
