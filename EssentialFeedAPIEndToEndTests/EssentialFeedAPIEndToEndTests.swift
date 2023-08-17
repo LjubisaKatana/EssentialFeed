@@ -48,7 +48,7 @@ final class EssentialFeedAPIEndToEndTests: XCTestCase {
             receivedResult = result
             exp.fulfill()
         }
-        wait(for: [exp], timeout: 5.0) // It's recommended to start with 5.0 sec. It's ideal to run test somewhere between 3 - 5 seconds depending of network and CI server
+        wait(for: [exp], timeout: 10.0) // It's recommended to start with 5.0 sec. It's ideal to run test somewhere between 3 - 5 seconds depending of network and CI server
         return receivedResult
     }
     
