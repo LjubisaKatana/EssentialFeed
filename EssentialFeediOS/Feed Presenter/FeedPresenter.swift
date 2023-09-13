@@ -23,9 +23,7 @@ protocol FeedView {
     func display(_ viewModel: FeedViewModel)
 }
     
-final class FeedPresenter {
-    typealias Observer<T> = (T) -> Void
-    
+final class FeedPresenter {    
     private let feedLoader: FeedLoader
     
     init(feedLoader: FeedLoader) {
