@@ -5,7 +5,7 @@
 //  Created by Ljubisa Katana on 22.9.23..
 //
 
-import Foundation
+import UIKit
 
 extension UITableView {
     func dequeueReusableCell<T: UITableViewCell>() -> T {
