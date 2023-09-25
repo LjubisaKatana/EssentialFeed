@@ -30,6 +30,7 @@
 		EA4F95B729D5AB0800CF016E /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4F95B629D5AB0800CF016E /* HTTPClient.swift */; };
 		EA65C7322A8A36680096BDC8 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA65C7312A8A36680096BDC8 /* FeedViewController.swift */; };
 		EA6ABE9A2AC1A6E2001BE02F /* Feed.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA6ABE9C2AC1A6E2001BE02F /* Feed.strings */; };
+		EA6ABEA12AC1A855001BE02F /* FeedLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABEA02AC1A855001BE02F /* FeedLocalizationTests.swift */; };
 		EA6F301B2A571E2900C683A5 /* FeedCachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6F301A2A571E2900C683A5 /* FeedCachePolicy.swift */; };
 		EA7143B72A8B860300E0D33F /* FeedImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7143B62A8B860300E0D33F /* FeedImageCell.swift */; };
 		EA74D35D2A850D9C00288942 /* EssentialFeediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA74D3532A850D9C00288942 /* EssentialFeediOS.framework */; };
@@ -158,6 +159,8 @@
 		EA6ABE9B2AC1A6E2001BE02F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Feed.strings; sourceTree = "<group>"; };
 		EA6ABE9D2AC1A757001BE02F /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Feed.strings"; sourceTree = "<group>"; };
 		EA6ABE9E2AC1A794001BE02F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Feed.strings; sourceTree = "<group>"; };
+		EA6ABEA02AC1A855001BE02F /* FeedLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLocalizationTests.swift; sourceTree = "<group>"; };
+		EA6ABEA22AC1AA4D001BE02F /* sr-Latn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sr-Latn"; path = "sr-Latn.lproj/Feed.strings"; sourceTree = "<group>"; };
 		EA6F301A2A571E2900C683A5 /* FeedCachePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCachePolicy.swift; sourceTree = "<group>"; };
 		EA7143B62A8B860300E0D33F /* FeedImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageCell.swift; sourceTree = "<group>"; };
 		EA74D3532A850D9C00288942 /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -313,6 +316,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		EA6ABE9F2AC1A831001BE02F /* Feed Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				EA6ABEA02AC1A855001BE02F /* FeedLocalizationTests.swift */,
+			);
+			path = "Feed Presentation";
+			sourceTree = "<group>";
+		};
 		EA74D3542A850D9C00288942 /* EssentialFeediOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +337,7 @@
 		EA74D3602A850D9D00288942 /* EssentialFeediOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				EA6ABE9F2AC1A831001BE02F /* Feed Presentation */,
 				EA44AC032AA5EB7E003DEA68 /* Feed UI */,
 				EAF4ABAF2A862D1A00D108C3 /* EssentialFeediOSTests-Bridging-Header.h */,
 			);
@@ -711,6 +723,7 @@
 				Base,
 				"pt-BR",
 				el,
+				"sr-Latn",
 			);
 			mainGroup = EA986EA429C9C237003611C5;
 			productRefGroup = EA986EAF29C9C237003611C5 /* Products */;
@@ -803,6 +816,7 @@
 				EAF4ABB82A86420800D108C3 /*  XCTestCase+MemoryLeakTracking.swift in Sources */,
 				EA44AC0F2AA5F207003DEA68 /* UIRefreshControl+TestHelpers.swift in Sources */,
 				EA44AC062AA5EC84003DEA68 /* FeedViewControllerTests+LoaderSpy.swift in Sources */,
+				EA6ABEA12AC1A855001BE02F /* FeedLocalizationTests.swift in Sources */,
 				EA44AC112AA5F24A003DEA68 /* UIImage+TestHelpers.swift in Sources */,
 				EA44AC172AA5F2F5003DEA68 /* FeedImageCell+TestHelpers.swift in Sources */,
 				EAF4ABB12A862D1A00D108C3 /* FeedUIIntegrationTests.swift in Sources */,
@@ -918,6 +932,7 @@
 				EA6ABE9B2AC1A6E2001BE02F /* en */,
 				EA6ABE9D2AC1A757001BE02F /* pt-BR */,
 				EA6ABE9E2AC1A794001BE02F /* el */,
+				EA6ABEA22AC1AA4D001BE02F /* sr-Latn */,
 			);
 			name = Feed.strings;
 			sourceTree = "<group>";
