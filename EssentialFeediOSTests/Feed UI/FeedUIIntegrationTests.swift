@@ -269,8 +269,17 @@ final class FeedUIIntegrationTests: XCTestCase {
         XCTAssertNil(view?.renderedImage, "Expected no rendered image when an image load finishes after the view is not visible anymore")
     }
     
-    private func anyImageData() -> Data {
-        return UIImage.make(withColor: .red).pngData()!
+
+    func test_loadFeedCompletion_dispatchesFromBackgroundToMainThread() {
+        let (sut, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        let exp = expectation(description: "Wait for background queue")
+        DispatchQueue.global().async {
+            loader.completeFeedLoading(at: 0)
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
     }
     
     // MARK: - Helpers 
@@ -285,10 +294,14 @@ final class FeedUIIntegrationTests: XCTestCase {
         return (sut, loader)
     }
 
-    private func makeImage (description: String? = nil, location: String? = nil, url: URL = URL(string: "http://any-url.com")!) -> FeedImage {
+    private func makeImage(description: String? = nil, location: String? = nil, url: URL = URL(string: "http://any-url.com")!) -> FeedImage {
         return FeedImage(id: UUID(),
                          description: description,
                          location: location,
                          url: url)
+    }
+    
+    private func anyImageData() -> Data {
+        return UIImage.make(withColor: .red).pngData()!
     }
 }
