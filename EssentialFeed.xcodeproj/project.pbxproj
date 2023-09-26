@@ -52,6 +52,7 @@
 		EA9677D12AC2EB79009E8A3A /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9677D02AC2EB79009E8A3A /* MainQueueDispatchDecorator.swift */; };
 		EA9677D32AC2EC4F009E8A3A /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9677D22AC2EC4F009E8A3A /* WeakRefVirtualProxy.swift */; };
 		EA9677D52AC2ECF3009E8A3A /* FeedImageDataLoaderPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9677D42AC2ECF3009E8A3A /* FeedImageDataLoaderPresentationAdapter.swift */; };
+		EA9677D72AC2ED57009E8A3A /* FeedLoaderPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9677D62AC2ED57009E8A3A /* FeedLoaderPresentationAdapter.swift */; };
 		EA97C5CB29DD90A1003587F9 /*  XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA97C5CA29DD90A1003587F9 /*  XCTestCase+MemoryLeakTracking.swift */; };
 		EA986EB329C9C237003611C5 /* EssentialFeed.docc in Sources */ = {isa = PBXBuildFile; fileRef = EA986EB229C9C237003611C5 /* EssentialFeed.docc */; };
 		EA986EB929C9C237003611C5 /* EssentialFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA986EAE29C9C237003611C5 /* EssentialFeed.framework */; };
@@ -186,6 +187,7 @@
 		EA9677D02AC2EB79009E8A3A /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
 		EA9677D22AC2EC4F009E8A3A /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
 		EA9677D42AC2ECF3009E8A3A /* FeedImageDataLoaderPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderPresentationAdapter.swift; sourceTree = "<group>"; };
+		EA9677D62AC2ED57009E8A3A /* FeedLoaderPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderPresentationAdapter.swift; sourceTree = "<group>"; };
 		EA97C5CA29DD90A1003587F9 /*  XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		EA986EAE29C9C237003611C5 /* EssentialFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA986EB129C9C237003611C5 /* EssentialFeed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EssentialFeed.h; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				EA9677D02AC2EB79009E8A3A /* MainQueueDispatchDecorator.swift */,
 				EA9677D22AC2EC4F009E8A3A /* WeakRefVirtualProxy.swift */,
 				EA9677D42AC2ECF3009E8A3A /* FeedImageDataLoaderPresentationAdapter.swift */,
+				EA9677D62AC2ED57009E8A3A /* FeedLoaderPresentationAdapter.swift */,
 			);
 			path = Composers;
 			sourceTree = "<group>";
@@ -808,6 +811,7 @@
 				EADCABFC2ABD901B005C87DA /* UllmageView+Animations.swift in Sources */,
 				EADCABFA2ABD8DCC005C87DA /* UITableView+Dequeueing.swift in Sources */,
 				EA9F8FFF2AB1F573003FE5C5 /* FeedImagePresenter.swift in Sources */,
+				EA9677D72AC2ED57009E8A3A /* FeedLoaderPresentationAdapter.swift in Sources */,
 				EA9F90012AB1F7EE003FE5C5 /* FeedViewModel.swift in Sources */,
 				EA9677D32AC2EC4F009E8A3A /* WeakRefVirtualProxy.swift in Sources */,
 				EA65C7322A8A36680096BDC8 /* FeedViewController.swift in Sources */,
