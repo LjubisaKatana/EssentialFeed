@@ -49,6 +49,7 @@
 		EA9165E02A56D7090075AA52 /* FeedCacheTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9165DF2A56D7090075AA52 /* FeedCacheTestHelpers.swift */; };
 		EA9165E22A56D8DE0075AA52 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9165E12A56D8DE0075AA52 /* SharedTestHelpers.swift */; };
 		EA91D7242AA0AEDE007B9485 /* FeedImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA91D7232AA0AEDE007B9485 /* FeedImageDataLoader.swift */; };
+		EA923F0E2B052D0900544617 /* FeedPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA923F0D2B052D0900544617 /* FeedPresenterTests.swift */; };
 		EA9372D329D6CD2B00AE997C /* FeedItemsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9372D229D6CD2B00AE997C /* FeedItemsMapper.swift */; };
 		EA9677D12AC2EB79009E8A3A /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9677D02AC2EB79009E8A3A /* MainQueueDispatchDecorator.swift */; };
 		EA9677D32AC2EC4F009E8A3A /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9677D22AC2EC4F009E8A3A /* WeakRefVirtualProxy.swift */; };
@@ -188,6 +189,7 @@
 		EA9165DF2A56D7090075AA52 /* FeedCacheTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCacheTestHelpers.swift; sourceTree = "<group>"; };
 		EA9165E12A56D8DE0075AA52 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		EA91D7232AA0AEDE007B9485 /* FeedImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoader.swift; sourceTree = "<group>"; };
+		EA923F0D2B052D0900544617 /* FeedPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenterTests.swift; sourceTree = "<group>"; };
 		EA9372D229D6CD2B00AE997C /* FeedItemsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsMapper.swift; sourceTree = "<group>"; };
 		EA9677D02AC2EB79009E8A3A /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
 		EA9677D22AC2EC4F009E8A3A /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
@@ -433,6 +435,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		EA923F0C2B052CD300544617 /* Feed Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				EA923F0D2B052D0900544617 /* FeedPresenterTests.swift */,
+			);
+			path = "Feed Presentation";
+			sourceTree = "<group>";
+		};
 		EA9372D429D6F33700AE997C /* Feed API */ = {
 			isa = PBXGroup;
 			children = (
@@ -493,6 +503,7 @@
 		EA986EBC29C9C237003611C5 /* EssentialFeedTests */ = {
 			isa = PBXGroup;
 			children = (
+				EA923F0C2B052CD300544617 /* Feed Presentation */,
 				EA97C5C929DD905C003587F9 /* Helpers */,
 				EAD0AC562A40706E00F37D73 /* Feed Cache */,
 				EA9372D429D6F33700AE997C /* Feed API */,
@@ -901,6 +912,7 @@
 				EA7A9E642A5EB738004E879B /* XCTestCase+FailableRetrieveFeedStoreSpecs.swift in Sources */,
 				EAACE5C829DC2F3B003E8D82 /* URLSessionHTTPClientTests.swift in Sources */,
 				EA9165E22A56D8DE0075AA52 /* SharedTestHelpers.swift in Sources */,
+				EA923F0E2B052D0900544617 /* FeedPresenterTests.swift in Sources */,
 				EA97C5CB29DD90A1003587F9 /*  XCTestCase+MemoryLeakTracking.swift in Sources */,
 				EAD0AC582A4070AE00F37D73 /* CacheFeedUseCaseTests.swift in Sources */,
 				EA9165E02A56D7090075AA52 /* FeedCacheTestHelpers.swift in Sources */,
@@ -1296,12 +1308,14 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = CUCRU7QZBE;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Ljubo.EssentialFeedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 16.0;
 			};
 			name = Debug;
 		};
@@ -1314,12 +1328,14 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = CUCRU7QZBE;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Ljubo.EssentialFeedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 16.0;
 			};
 			name = Release;
 		};
