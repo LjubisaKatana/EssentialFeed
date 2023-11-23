@@ -1,0 +1,10 @@
+/* 
+  Feed.strings
+  EssentialFeed
+
+  Created by Ljubisa Katana on 23.11.23..
+  
+*/
+
+"FEED_VIEW_TITLE" = "Moj Feed";
+"FEED_VIEW_CONNECTION_ERROR" = "Ne mogu da se povežem sa serverom";
