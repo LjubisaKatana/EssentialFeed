@@ -30,6 +30,7 @@
 		EA4F95B729D5AB0800CF016E /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4F95B629D5AB0800CF016E /* HTTPClient.swift */; };
 		EA5DA3DE2B0FC3D70013AA16 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5DA3DD2B0FC3D70013AA16 /* FeedPresenter.swift */; };
 		EA5DA3DF2B0FC4940013AA16 /* Feed.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA5DA3D82B0F6A700013AA16 /* Feed.strings */; };
+		EA5DA3E12B0FC50F0013AA16 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5DA3E02B0FC50F0013AA16 /* FeedViewModel.swift */; };
 		EA65C7322A8A36680096BDC8 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA65C7312A8A36680096BDC8 /* FeedViewController.swift */; };
 		EA6ABE9A2AC1A6E2001BE02F /* Feed.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA6ABE9C2AC1A6E2001BE02F /* Feed.strings */; };
 		EA6ABEA12AC1A855001BE02F /* FeedLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABEA02AC1A855001BE02F /* FeedLocalizationTests.swift */; };
@@ -171,6 +172,7 @@
 		EA5DA3DA2B0F6A740013AA16 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Feed.strings"; sourceTree = "<group>"; };
 		EA5DA3DB2B0F6A740013AA16 /* sr-Latn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sr-Latn"; path = "sr-Latn.lproj/Feed.strings"; sourceTree = "<group>"; };
 		EA5DA3DD2B0FC3D70013AA16 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
+		EA5DA3E02B0FC50F0013AA16 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		EA65C7312A8A36680096BDC8 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		EA6ABE9B2AC1A6E2001BE02F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Feed.strings; sourceTree = "<group>"; };
 		EA6ABE9D2AC1A757001BE02F /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Feed.strings"; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				EA5DA3DD2B0FC3D70013AA16 /* FeedPresenter.swift */,
+				EA5DA3E02B0FC50F0013AA16 /* FeedViewModel.swift */,
 				EA5DA3D82B0F6A700013AA16 /* Feed.strings */,
 			);
 			path = "Feed Presentation";
@@ -900,6 +903,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA5DA3E12B0FC50F0013AA16 /* FeedViewModel.swift in Sources */,
 				EA8396D22A444E6000B41E0A /* LocalFeedImage.swift in Sources */,
 				EA49190D2A60068E000B4D2D /* FeedStore.xcdatamodeld in Sources */,
 				EAB6FC1F2A436CEE0031157D /* FeedStore.swift in Sources */,
