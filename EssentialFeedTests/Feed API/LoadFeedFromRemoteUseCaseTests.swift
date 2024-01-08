@@ -183,16 +183,22 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     
 //    @available(swift, deprecated: 5, message: "use `init(_:)` instead")
     private class HTTPClientSpy: HTTPClient {
+
+        private struct Task: HTTPClientTask {
+            func cancel() {}
+        }
+
         private var messages = [(url: URL, completion: (HTTPClient.Result) -> Void)]()
         
         var requestURLs: [URL] {
             return messages.map { $0.url }
         }
         
-        func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) {
+        func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
             messages.append((url, completion))
+            return Task()
         }
-        
+
         func complete(with error: Error, at index: Int = 0) {
             messages[index].completion(.failure(error))
         }
