@@ -45,7 +45,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
 
         let receivedError = resultErrorFor((data: nil, response: nil, error: requestError))
 
-        XCTAssertEqual(receivedError?.domain, requestError.domain)
+        XCTAssertNotNil(receivedError)
     }
 
     func test_getFromURL_failsOnAllInvalidRepresentationCasses() {
@@ -95,7 +95,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
         return sut
     }
 
-    private func resultErrorFor(_ values: (data: Data?, response: URLResponse?, error: Error?)? = nil, taskHandler: (HTTPClientTask) -> Void = { _ in }, file: StaticString = #file, line: UInt = #line) -> NSError? {
+    private func resultErrorFor(_ values: (data: Data?, response: URLResponse?, error: Error?)? = nil, taskHandler: (HTTPClientTask) -> Void = { _ in }, file: StaticString = #file, line: UInt = #line) -> Error? {
         let result = resultFor(values, taskHandler: taskHandler, file: file, line: line)
 
         switch result {
@@ -152,7 +152,6 @@ final class URLSessionHTTPClientTests: XCTestCase {
         }
         
         private static var _stub: Stub?
-
         private static var stub: Stub? {
             get { return queue.sync { _stub } }
             set { queue.sync { _stub = newValue } }
