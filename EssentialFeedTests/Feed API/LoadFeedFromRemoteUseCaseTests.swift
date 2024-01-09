@@ -15,7 +15,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         let (_, client) = makeSUT()
         
         // assert
-        XCTAssertTrue(client.requestURLs.isEmpty)
+        XCTAssertTrue(client.requestedURLs.isEmpty)
     }
     
     func test_load_requestsDataFromURL() {
@@ -27,7 +27,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         sut.load { _ in }
         
         // assert
-        XCTAssertEqual(client.requestURLs, [url])
+        XCTAssertEqual(client.requestedURLs, [url])
     }
     
     func test_loadTwice_requestsDataFromURLTwice() {
@@ -40,7 +40,7 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         sut.load { _ in }
         
         // assert
-        XCTAssertEqual(client.requestURLs, [url, url]) // we can assert order, equality and count. This is more better way to have good test
+        XCTAssertEqual(client.requestedURLs, [url, url]) // we can assert order, equality and count. This is more better way to have good test
     }
     
     func test_load_deliversErrorOnClientError() {
@@ -121,13 +121,13 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     private func makeSUT(url: URL = URL(string: "https://a-url.com")!,
                          file: StaticString = #filePath,
                          line: UInt = #line) -> (sut: RemoteFeedLoader,
-                                                                           client: HTTPClientSpy) {
+                                                 client: HTTPClientSpy) {
         let client = HTTPClientSpy()
         let sut = RemoteFeedLoader(url: url, client: client)
-        
+
         trackForMemoryLeaks(instance: client, file: file, line: line)
         trackForMemoryLeaks(instance: sut, file: file, line: line)
-        
+
         return (sut, client)
     }
     
@@ -179,36 +179,5 @@ final class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         action()
         
         wait(for: [exp], timeout: 1.0)
-    }
-    
-//    @available(swift, deprecated: 5, message: "use `init(_:)` instead")
-    private class HTTPClientSpy: HTTPClient {
-
-        private struct Task: HTTPClientTask {
-            func cancel() {}
-        }
-
-        private var messages = [(url: URL, completion: (HTTPClient.Result) -> Void)]()
-        
-        var requestURLs: [URL] {
-            return messages.map { $0.url }
-        }
-        
-        func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
-            messages.append((url, completion))
-            return Task()
-        }
-
-        func complete(with error: Error, at index: Int = 0) {
-            messages[index].completion(.failure(error))
-        }
-        
-        func complete(withStatusCode code: Int, data: Data, at index: Int = 0) {
-            let response = HTTPURLResponse(url: requestURLs[index],
-                                           statusCode: code,
-                                           httpVersion: nil,
-                                           headerFields: nil)!
-            messages[index].completion(.success((data, response)))
-        }
     }
 }
