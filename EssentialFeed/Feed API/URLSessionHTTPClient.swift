@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class URLSessionHTTPClient: HTTPClient {
+public final class URLSessionHTTPClient: HTTPClient {
     private let session: URLSession
 
     public init(session: URLSession) {
@@ -36,6 +36,7 @@ public class URLSessionHTTPClient: HTTPClient {
                 }
             })
         }
+        
         task.resume()
         return URLSessionTaskWrapper(wrapped: task)
     }
