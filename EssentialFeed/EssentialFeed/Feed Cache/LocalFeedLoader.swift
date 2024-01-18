@@ -17,9 +17,9 @@ public final class LocalFeedLoader {
     }
 }
 
-extension LocalFeedLoader {
-    public typealias SaveResult = Result<Void, Error>
-    
+extension LocalFeedLoader: FeedCache {
+    public typealias SaveResult = FeedCache.Result
+
     public func save(_ feed: [FeedImage], completion: @escaping (SaveResult) -> Void) {
         store.deleteCachedFeed { [weak self] deletionResult in
             guard let self = self else { return }
@@ -88,6 +88,7 @@ private extension Array where Element == FeedImage {
         return map { LocalFeedImage(id: $0.id, description: $0.description, location: $0.location, url: $0.url) }
     }
 }
+
 private extension Array where Element == LocalFeedImage {
     func toModels() -> [FeedImage] {
         return map { FeedImage(id: $0.id, description: $0.description, location: $0.location, url: $0.url) }
