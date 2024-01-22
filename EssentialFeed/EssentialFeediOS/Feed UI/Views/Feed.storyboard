@@ -68,7 +68,6 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="14" id="6OF-eB-jue"/>
                                                                     </constraints>
-                                                                    <accessibility key="accessibilityConfiguration" identifier="feed-image-view"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -145,7 +144,6 @@ Location</string>
                                         <constraint firstItem="B2S-gh-6Hi" firstAttribute="leading" secondItem="wyN-jv-dUl" secondAttribute="leadingMargin" id="ZgS-A2-fHR"/>
                                     </constraints>
                                 </tableViewCellContentView>
-<accessibility key="accessibilityConfiguration" identifier="feed-image-cell"/>
                                 <connections>
                                     <outlet property="descriptionLabel" destination="QZJ-pD-fOZ" id="EJM-vO-YQ3"/>
                                     <outlet property="feedImageContainer" destination="Kgu-3u-O48" id="2V4-af-2dZ"/>
