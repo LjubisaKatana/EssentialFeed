@@ -52,6 +52,7 @@
 		EA94321B2B5FF9EB00CA7515 /* FeedSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA94321A2B5FF9EB00CA7515 /* FeedSnapshotTests.swift */; };
 		EA94321D2B5FFAC700CA7515 /* snapshots in Resources */ = {isa = PBXBuildFile; fileRef = EA94321C2B5FFAC700CA7515 /* snapshots */; };
 		EA9432202B60010800CA7515 /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA94321F2B60010800CA7515 /* UIImage+TestHelpers.swift */; };
+		EA9432222B60023A00CA7515 /* UITableView+HeaderSizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9432212B60023A00CA7515 /* UITableView+HeaderSizing.swift */; };
 		EA976C112B5A7FE20075C9E9 /* FeedImageDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA976C102B5A7FE20075C9E9 /* FeedImageDataCache.swift */; };
 		EA9794392B4EBAB300814237 /* HTTPURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9794382B4EBAB300814237 /* HTTPURLResponse.swift */; };
 		EA97943B2B4EBBF400814237 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA97943A2B4EBBF400814237 /* URLProtocolStub.swift */; };
@@ -197,6 +198,7 @@
 		EA94321A2B5FF9EB00CA7515 /* FeedSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedSnapshotTests.swift; sourceTree = "<group>"; };
 		EA94321C2B5FFAC700CA7515 /* snapshots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = snapshots; sourceTree = "<group>"; };
 		EA94321F2B60010800CA7515 /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
+		EA9432212B60023A00CA7515 /* UITableView+HeaderSizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+HeaderSizing.swift"; sourceTree = "<group>"; };
 		EA976C102B5A7FE20075C9E9 /* FeedImageDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataCache.swift; sourceTree = "<group>"; };
 		EA9794382B4EBAB300814237 /* HTTPURLResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPURLResponse.swift; sourceTree = "<group>"; };
 		EA97943A2B4EBBF400814237 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 				EADCABF92ABD8DCC005C87DA /* UITableView+Dequeueing.swift */,
 				EADCABFB2ABD901B005C87DA /* UllmageView+Animations.swift */,
 				EAC2600E2AFBDE9300B494C9 /* UIRefreshControl+Helpers.swift */,
+				EA9432212B60023A00CA7515 /* UITableView+HeaderSizing.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -834,6 +837,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA9432222B60023A00CA7515 /* UITableView+HeaderSizing.swift in Sources */,
 				EA73B88A2AEBD3A100FAABC2 /* ErrorView.swift in Sources */,
 				EAC2600F2AFBDE9300B494C9 /* UIRefreshControl+Helpers.swift in Sources */,
 				EA1C26752A8E36F9007AAE8A /* UIView+Shimmering.swift in Sources */,
