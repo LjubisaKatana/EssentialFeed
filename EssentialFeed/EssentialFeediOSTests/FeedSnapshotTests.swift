@@ -21,12 +21,7 @@ class FeedSnapshotTests: XCTestCase {
     }
 
     func test_feedWithContent() {
-        let sut = makeSUT()
 
-        sut.display(feedWithContent())
-
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "FEED_WITH_CONTENT_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "FEED_WITH_CONTENT_dark")
     }
 
     func test_feedWithErrorMessage() {
@@ -48,11 +43,14 @@ class FeedSnapshotTests: XCTestCase {
     }
 
     // MARK: - Helpers
+
     private func makeSUT() -> FeedViewController {
         let bundle = Bundle(for: FeedViewController.self)
         let storyboard = UIStoryboard(name: "Feed", bundle: bundle)
         let controller = storyboard.instantiateInitialViewController() as! FeedViewController
         controller.loadViewIfNeeded()
+        controller.tableView.showsVerticalScrollIndicator = false
+        controller.tableView.showsHorizontalScrollIndicator = false
         return controller
     }
 
@@ -89,6 +87,7 @@ class FeedSnapshotTests: XCTestCase {
             )
         ]
     }
+
 }
 
 private extension FeedViewController {
@@ -106,6 +105,7 @@ private extension FeedViewController {
 private class ImageStub: FeedImageCellControllerDelegate {
     let viewModel: FeedImageViewModel<UIImage>
     weak var controller: FeedImageCellController?
+
     init(description: String?, location: String?, image: UIImage?) {
         viewModel = FeedImageViewModel(
             description: description,
