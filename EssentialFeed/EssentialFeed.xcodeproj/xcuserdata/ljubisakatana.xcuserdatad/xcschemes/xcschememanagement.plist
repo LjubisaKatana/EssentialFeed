@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>EssentialFeedAPI.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>EssentialFeedAPIEndToEndTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -32,6 +37,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>EA38F9012B69782D003D859B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EA38F9082B69782D003D859B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>EA74D3522A850D9C00288942</key>
 		<dict>
 			<key>primary</key>
