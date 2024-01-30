@@ -13,6 +13,7 @@
 		EA1976162B55660B0008E83E /* EssentialFeediOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA1976122B55660B0008E83E /* EssentialFeediOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA30E6562B595CE9009BCE76 /* FeedImageDataLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA30E6552B595CE9009BCE76 /* FeedImageDataLoaderSpy.swift */; };
 		EA30E6582B59606D009BCE76 /* XCTestCase+FeedImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA30E6572B59606D009BCE76 /* XCTestCase+FeedImageDataLoader.swift */; };
+		EA38F9302B698CD1003D859B /* CombineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA38F92F2B698CD1003D859B /* CombineHelpers.swift */; };
 		EA396AAE2B5562420023D705 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA396AAD2B5562420023D705 /* AppDelegate.swift */; };
 		EA396AB02B5562420023D705 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA396AAF2B5562420023D705 /* SceneDelegate.swift */; };
 		EA396AB22B5562420023D705 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA396AB12B5562420023D705 /* ViewController.swift */; };
@@ -75,6 +76,7 @@
 		EA1976122B55660B0008E83E /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA30E6552B595CE9009BCE76 /* FeedImageDataLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderSpy.swift; sourceTree = "<group>"; };
 		EA30E6572B59606D009BCE76 /* XCTestCase+FeedImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FeedImageDataLoader.swift"; sourceTree = "<group>"; };
+		EA38F92F2B698CD1003D859B /* CombineHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineHelpers.swift; sourceTree = "<group>"; };
 		EA396AAA2B5562420023D705 /* EssentialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA396AAD2B5562420023D705 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA396AAF2B5562420023D705 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				EA396AB62B5562440023D705 /* Assets.xcassets */,
 				EA396AB82B5562440023D705 /* LaunchScreen.storyboard */,
 				EA396ABB2B5562440023D705 /* Info.plist */,
+				EA38F92F2B698CD1003D859B /* CombineHelpers.swift */,
 			);
 			path = EssentialApp;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 			files = (
 				EA396AB22B5562420023D705 /* ViewController.swift in Sources */,
 				EA396AAE2B5562420023D705 /* AppDelegate.swift in Sources */,
+				EA38F9302B698CD1003D859B /* CombineHelpers.swift in Sources */,
 				EA396AB02B5562420023D705 /* SceneDelegate.swift in Sources */,
 				EAFDEDD32B5F196400FE38F6 /* FeedLoaderPresentationAdapter.swift in Sources */,
 				EAFDEDD22B5F196400FE38F6 /* FeedImageDataLoaderPresentationAdapter.swift in Sources */,
