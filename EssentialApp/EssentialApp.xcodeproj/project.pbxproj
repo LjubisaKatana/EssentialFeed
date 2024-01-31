@@ -29,7 +29,7 @@
 		EAAA42B42B558F9100A4D82D /* EssentialAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAA42B32B558F9100A4D82D /* EssentialAppTests.swift */; };
 		EAFDEDBF2B5EBEA000FE38F6 /* SceneDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDEDBE2B5EBEA000FE38F6 /* SceneDelegateTests.swift */; };
 		EAFDEDD22B5F196400FE38F6 /* FeedImageDataLoaderPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDEDD02B5F196400FE38F6 /* FeedImageDataLoaderPresentationAdapter.swift */; };
-		EAFDEDD32B5F196400FE38F6 /* FeedLoaderPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDEDCE2B5F196400FE38F6 /* FeedLoaderPresentationAdapter.swift */; };
+		EAFDEDD32B5F196400FE38F6 /* LoadResourcePresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDEDCE2B5F196400FE38F6 /* LoadResourcePresentationAdapter.swift */; };
 		EAFDEDD42B5F196400FE38F6 /* FeedUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDEDCC2B5F196400FE38F6 /* FeedUIComposer.swift */; };
 		EAFDEDD62B5F196400FE38F6 /* FeedViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDEDCF2B5F196400FE38F6 /* FeedViewAdapter.swift */; };
 		EAFDEDD72B5F196400FE38F6 /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDEDCD2B5F196400FE38F6 /* WeakRefVirtualProxy.swift */; };
@@ -94,7 +94,7 @@
 		EAFDEDBE2B5EBEA000FE38F6 /* SceneDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegateTests.swift; sourceTree = "<group>"; };
 		EAFDEDCC2B5F196400FE38F6 /* FeedUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUIComposer.swift; sourceTree = "<group>"; };
 		EAFDEDCD2B5F196400FE38F6 /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
-		EAFDEDCE2B5F196400FE38F6 /* FeedLoaderPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderPresentationAdapter.swift; sourceTree = "<group>"; };
+		EAFDEDCE2B5F196400FE38F6 /* LoadResourcePresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresentationAdapter.swift; sourceTree = "<group>"; };
 		EAFDEDCF2B5F196400FE38F6 /* FeedViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewAdapter.swift; sourceTree = "<group>"; };
 		EAFDEDD02B5F196400FE38F6 /* FeedImageDataLoaderPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderPresentationAdapter.swift; sourceTree = "<group>"; };
 		EAFDEDD82B5F199500FE38F6 /* FeedUIIntegrationTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedUIIntegrationTests+Localization.swift"; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 				EAFDEDCC2B5F196400FE38F6 /* FeedUIComposer.swift */,
 				EAFDEDCD2B5F196400FE38F6 /* WeakRefVirtualProxy.swift */,
 				EAFDEDD02B5F196400FE38F6 /* FeedImageDataLoaderPresentationAdapter.swift */,
-				EAFDEDCE2B5F196400FE38F6 /* FeedLoaderPresentationAdapter.swift */,
+				EAFDEDCE2B5F196400FE38F6 /* LoadResourcePresentationAdapter.swift */,
 				EAFDEDCF2B5F196400FE38F6 /* FeedViewAdapter.swift */,
 				EA396AB32B5562420023D705 /* Main.storyboard */,
 				EA396AB62B5562440023D705 /* Assets.xcassets */,
@@ -316,7 +316,7 @@
 				EA396AAE2B5562420023D705 /* AppDelegate.swift in Sources */,
 				EA38F9302B698CD1003D859B /* CombineHelpers.swift in Sources */,
 				EA396AB02B5562420023D705 /* SceneDelegate.swift in Sources */,
-				EAFDEDD32B5F196400FE38F6 /* FeedLoaderPresentationAdapter.swift in Sources */,
+				EAFDEDD32B5F196400FE38F6 /* LoadResourcePresentationAdapter.swift in Sources */,
 				EAFDEDD22B5F196400FE38F6 /* FeedImageDataLoaderPresentationAdapter.swift in Sources */,
 				EAFDEDD42B5F196400FE38F6 /* FeedUIComposer.swift in Sources */,
 				EAFDEDD72B5F196400FE38F6 /* WeakRefVirtualProxy.swift in Sources */,
