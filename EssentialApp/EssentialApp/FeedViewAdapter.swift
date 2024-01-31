@@ -10,14 +10,15 @@ import EssentialFeed
 import EssentialFeediOS
 
 // transformed adapter function to adapter object
-final class FeedViewAdapter: FeedView {
-     private weak var controller: FeedViewController?
-     private let imageLoader: (URL) -> FeedImageDataLoader.Publisher
+final class FeedViewAdapter: ResourceView {
+    
+    private weak var controller: FeedViewController?
+    private let imageLoader: (URL) -> FeedImageDataLoader.Publisher
 
-     init(controller: FeedViewController, imageLoader: @escaping (URL) -> FeedImageDataLoader.Publisher) {
-         self.controller = controller
-         self.imageLoader = imageLoader
-     }
+    init(controller: FeedViewController, imageLoader: @escaping (URL) -> FeedImageDataLoader.Publisher) {
+        self.controller = controller
+        self.imageLoader = imageLoader
+    }
 
     func display(_ viewModel: FeedViewModel) {
         controller?.display(viewModel.feed.map { model in
