@@ -7,4 +7,4 @@
 */
 
 "FEED_VIEW_TITLE" = "My Feed";
-"FEED_VIEW_CONNECTION_ERROR" = "Nije uspelo povezivanje sa serverom";
+"GENERIC_CONNECTION_ERROR" = "Nije uspelo povezivanje sa serverom";
