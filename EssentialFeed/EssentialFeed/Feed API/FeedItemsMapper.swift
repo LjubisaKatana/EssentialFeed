@@ -7,24 +7,31 @@
 
 import Foundation
 
- final class FeedItemsMapper {
+public final class FeedItemsMapper {
     private struct Root: Decodable {
-        let items: [RemoteFeedItem]
+        private let items: [RemoteFeedItem]
+        
+        private struct RemoteFeedItem: Decodable {
+            let id: UUID
+            let description: String?
+            let location: String?
+            let image: URL
+        }
+
+        var images: [FeedImage] {
+            items.map { FeedImage(id: $0.id, description: $0.description, location: $0.location, url: $0.image) }
+        }
     }
-    
-    private init() {}
-    
-    // Explanation: "Since we're representing a value type (Int), a class constant and a computed var are equivalent in this context. It's a matter of personal preference."
-    private static var OK_200: Int { return 200 } // Why we use this one instead of static let OK_200: Int = 200
 
-     static func map(_ data: Data, from response: HTTPURLResponse) throws -> [RemoteFeedItem] {
-         guard response.isOK, let root = try? JSONDecoder().decode(Root.self, from: data) else {
-             throw RemoteFeedLoader.Error.invalidData
-         }
+    public enum Error: Swift.Error {
+        case invalidData
+    }
 
-         return root.items
-     }
+    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> [FeedImage] {
+        guard response.isOK, let root = try? JSONDecoder().decode(Root.self, from: data) else {
+            throw Error.invalidData
+        }
+
+        return root.images
+    }
 }
-// Since we have this mapper in own module and we don't want to have it accessible to other modules, we can mark it as `internal` It's by default but it's nice to have it visually
-//
-// Also we don't want this to be subclassed so we should mark it as `final`
