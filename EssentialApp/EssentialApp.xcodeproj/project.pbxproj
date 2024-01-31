@@ -33,7 +33,7 @@
 		EAFDEDD42B5F196400FE38F6 /* FeedUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDEDCC2B5F196400FE38F6 /* FeedUIComposer.swift */; };
 		EAFDEDD62B5F196400FE38F6 /* FeedViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDEDCF2B5F196400FE38F6 /* FeedViewAdapter.swift */; };
 		EAFDEDD72B5F196400FE38F6 /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDEDCD2B5F196400FE38F6 /* WeakRefVirtualProxy.swift */; };
-		EAFDEDE02B5F199500FE38F6 /* FeedViewControllerTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDEDD82B5F199500FE38F6 /* FeedViewControllerTests+Localization.swift */; };
+		EAFDEDE02B5F199500FE38F6 /* FeedUIIntegrationTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDEDD82B5F199500FE38F6 /* FeedUIIntegrationTests+Localization.swift */; };
 		EAFDEDE12B5F199500FE38F6 /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDEDDB2B5F199500FE38F6 /* UIImage+TestHelpers.swift */; };
 		EAFDEDE22B5F199500FE38F6 /* FeedViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDEDDC2B5F199500FE38F6 /* FeedViewController+TestHelpers.swift */; };
 		EAFDEDE32B5F199500FE38F6 /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFDEDDD2B5F199500FE38F6 /* UIButton+TestHelpers.swift */; };
@@ -97,7 +97,7 @@
 		EAFDEDCE2B5F196400FE38F6 /* FeedLoaderPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderPresentationAdapter.swift; sourceTree = "<group>"; };
 		EAFDEDCF2B5F196400FE38F6 /* FeedViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewAdapter.swift; sourceTree = "<group>"; };
 		EAFDEDD02B5F196400FE38F6 /* FeedImageDataLoaderPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderPresentationAdapter.swift; sourceTree = "<group>"; };
-		EAFDEDD82B5F199500FE38F6 /* FeedViewControllerTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewControllerTests+Localization.swift"; sourceTree = "<group>"; };
+		EAFDEDD82B5F199500FE38F6 /* FeedUIIntegrationTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedUIIntegrationTests+Localization.swift"; sourceTree = "<group>"; };
 		EAFDEDD92B5F199500FE38F6 /* FeedViewControllerTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewControllerTests+LoaderSpy.swift"; sourceTree = "<group>"; };
 		EAFDEDDA2B5F199500FE38F6 /* FeedImageCell+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedImageCell+TestHelpers.swift"; sourceTree = "<group>"; };
 		EAFDEDDB2B5F199500FE38F6 /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 				EAFDEDDF2B5F199500FE38F6 /* FeedUIIntegrationTests+Assertions.swift */,
 				EAFDEDDC2B5F199500FE38F6 /* FeedViewController+TestHelpers.swift */,
 				EAFDEDDA2B5F199500FE38F6 /* FeedImageCell+TestHelpers.swift */,
-				EAFDEDD82B5F199500FE38F6 /* FeedViewControllerTests+Localization.swift */,
+				EAFDEDD82B5F199500FE38F6 /* FeedUIIntegrationTests+Localization.swift */,
 				EAFDEDDE2B5F199500FE38F6 /* UIRefreshControl+TestHelpers.swift */,
 				EAFDEDDB2B5F199500FE38F6 /* UIImage+TestHelpers.swift */,
 				EAFDEDDD2B5F199500FE38F6 /* UIButton+TestHelpers.swift */,
@@ -328,7 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAFDEDE02B5F199500FE38F6 /* FeedViewControllerTests+Localization.swift in Sources */,
+				EAFDEDE02B5F199500FE38F6 /* FeedUIIntegrationTests+Localization.swift in Sources */,
 				EAFDEDE72B5F199500FE38F6 /* UIRefreshControl+TestHelpers.swift in Sources */,
 				EA79A8B32B55985B00C74144 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				EAFDEDE42B5F199500FE38F6 /* FeedViewControllerTests+LoaderSpy.swift in Sources */,
