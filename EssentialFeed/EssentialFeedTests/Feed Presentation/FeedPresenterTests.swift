@@ -54,27 +54,26 @@ class FeedPresenterTests: XCTestCase {
     }
 
     // MARK: - Helpers
+    
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: FeedPresenter, view: ViewSpy) {
         let view = ViewSpy()
         let sut = FeedPresenter(feedView: view, loadingView: view, errorView: view)
         trackForMemoryLeaks(instance: view, file: file, line: line)
         trackForMemoryLeaks(instance: sut, file: file, line: line)
-        
+
         return (sut, view)
     }
 
     private func localized(_ key: String, table: String = "Feed", file: StaticString = #file, line: UInt = #line) -> String {
         let bundle = Bundle(for: FeedPresenter.self)
         let value = bundle.localizedString(forKey: key, value: nil, table: table)
-       
         if value == key {
             XCTFail("Missing localized string for key: \(key) in table: \(table)", file: file, line: line)
         }
-
         return value
     }
 
-    private class ViewSpy: FeedView, ResourceLoadingView, FeedErrorView {
+    private class ViewSpy: FeedView, ResourceLoadingView, ResourceErrorView {
         enum Message: Hashable {
             case display(errorMessage: String?)
             case display(isLoading: Bool)
@@ -83,7 +82,7 @@ class FeedPresenterTests: XCTestCase {
 
         private(set) var messages = Set<Message>()
 
-        func display(_ viewModel: FeedErrorViewModel) {
+        func display(_ viewModel: ResourceErrorViewModel) {
             messages.insert(.display(errorMessage: viewModel.message))
         }
 
