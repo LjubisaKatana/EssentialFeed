@@ -14,6 +14,14 @@ class FeedPresenterTests: XCTestCase {
         XCTAssertEqual(FeedPresenter.title, localized("FEED_VIEW_TITLE"))
     }
 
+    func test_map_createsViewModel() {
+        let feed = uniqueImageFeed().models
+
+        let viewModel = FeedPresenter.map(feed)
+
+        XCTAssertEqual(viewModel.feed, feed)
+    }
+
     func test_init_doesNotSendMessagesToView() {
         let (_, view) = makeSUT()
         XCTAssertTrue(view.messages.isEmpty, "Expected no view messages")
@@ -21,9 +29,7 @@ class FeedPresenterTests: XCTestCase {
 
     func test_didStartLoadingFeed_displaysNoErrorMessageAndStartsLoading() {
         let (sut, view) = makeSUT()
-
         sut.didStartLoadingFeed()
-
         XCTAssertEqual(view.messages, [
             .display(errorMessage: .none),
             .display(isLoading: true)
@@ -60,7 +66,6 @@ class FeedPresenterTests: XCTestCase {
         let sut = FeedPresenter(feedView: view, loadingView: view, errorView: view)
         trackForMemoryLeaks(instance: view, file: file, line: line)
         trackForMemoryLeaks(instance: sut, file: file, line: line)
-
         return (sut, view)
     }
 
