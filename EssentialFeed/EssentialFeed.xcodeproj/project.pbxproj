@@ -49,6 +49,8 @@
 		EA8A79FE2B6ED08A00ED6461 /* ImageCommentsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8A79FD2B6ED08A00ED6461 /* ImageCommentsEndpoint.swift */; };
 		EA8A7A002B6ED10400ED6461 /* FeedEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8A79FF2B6ED10400ED6461 /* FeedEndpointTests.swift */; };
 		EA8A7A022B6ED14300ED6461 /* ImageCommentsEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8A7A012B6ED14300ED6461 /* ImageCommentsEndpointTests.swift */; };
+		EA8A7A042B6EEDB500ED6461 /* LoadMoreCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8A7A032B6EEDB500ED6461 /* LoadMoreCellController.swift */; };
+		EA8A7A062B6EEDE700ED6461 /* LoadMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8A7A052B6EEDE700ED6461 /* LoadMoreCell.swift */; };
 		EA8B6BA42B6A844A00922FB1 /* LoadResourcePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8B6BA32B6A844A00922FB1 /* LoadResourcePresenter.swift */; };
 		EA8B6BA72B6A84A800922FB1 /* LoadResourcePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8B6BA62B6A84A800922FB1 /* LoadResourcePresenterTests.swift */; };
 		EA8B6BAA2B6A9D2B00922FB1 /* SharedLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8B6BA92B6A9D2B00922FB1 /* SharedLocalizationTests.swift */; };
@@ -221,6 +223,8 @@
 		EA8A79FD2B6ED08A00ED6461 /* ImageCommentsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsEndpoint.swift; sourceTree = "<group>"; };
 		EA8A79FF2B6ED10400ED6461 /* FeedEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEndpointTests.swift; sourceTree = "<group>"; };
 		EA8A7A012B6ED14300ED6461 /* ImageCommentsEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsEndpointTests.swift; sourceTree = "<group>"; };
+		EA8A7A032B6EEDB500ED6461 /* LoadMoreCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreCellController.swift; sourceTree = "<group>"; };
+		EA8A7A052B6EEDE700ED6461 /* LoadMoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreCell.swift; sourceTree = "<group>"; };
 		EA8B6BA32B6A844A00922FB1 /* LoadResourcePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenter.swift; sourceTree = "<group>"; };
 		EA8B6BA62B6A84A800922FB1 /* LoadResourcePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenterTests.swift; sourceTree = "<group>"; };
 		EA8B6BA92B6A9D2B00922FB1 /* SharedLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedLocalizationTests.swift; sourceTree = "<group>"; };
@@ -567,6 +571,7 @@
 			isa = PBXGroup;
 			children = (
 				EA463E8E2AA72DA9009EADD1 /* FeedImageCellController.swift */,
+				EA8A7A032B6EEDB500ED6461 /* LoadMoreCellController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -576,6 +581,7 @@
 			children = (
 				EAC2600B2AFBDD1500B494C9 /* Helpers */,
 				EA7143B62A8B860300E0D33F /* FeedImageCell.swift */,
+				EA8A7A052B6EEDE700ED6461 /* LoadMoreCell.swift */,
 				EA1340102ABC60BC00E30AAC /* Feed.storyboard */,
 				EA1340122ABC61E300E30AAC /* Feed.xcassets */,
 			);
@@ -1087,7 +1093,9 @@
 				EA9432222B60023A00CA7515 /* UITableView+HeaderSizing.swift in Sources */,
 				EA73B88A2AEBD3A100FAABC2 /* ErrorView.swift in Sources */,
 				EAC2600F2AFBDE9300B494C9 /* UIRefreshControl+Helpers.swift in Sources */,
+				EA8A7A062B6EEDE700ED6461 /* LoadMoreCell.swift in Sources */,
 				EA8A79F62B6EBBD800ED6461 /* UIView+Container.swift in Sources */,
+				EA8A7A042B6EEDB500ED6461 /* LoadMoreCellController.swift in Sources */,
 				EAD013002B6E674D00739B90 /* CellController.swift in Sources */,
 				EA1C26752A8E36F9007AAE8A /* UIView+Shimmering.swift in Sources */,
 				EADCABFC2ABD901B005C87DA /* UllmageView+Animations.swift in Sources */,
