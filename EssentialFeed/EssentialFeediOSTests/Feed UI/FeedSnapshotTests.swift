@@ -15,7 +15,6 @@ class FeedSnapshotTests: XCTestCase {
         let sut = makeSUT()
 
         sut.display(feedWithContent())
-
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "FEED_WITH_CONTENT_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "FEED_WITH_CONTENT_dark")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light, contentSize: .extraExtraExtraLarge)), named: "FEED_WITH_CONTENT_light_extraExtraExtraLarge")
@@ -23,18 +22,14 @@ class FeedSnapshotTests: XCTestCase {
 
     func test_feedWithFailedImageLoading() {
         let sut = makeSUT()
-
         sut.display(feedWithFailedImageLoading())
-
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "FEED_WITH_FAILED_IMAGE_LOADING_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "FEED_WITH_FAILED_IMAGE_LOADING_dark")
     }
 
     func test_feedWithLoadMoreIndicator() {
         let sut = makeSUT()
-
         sut.display(feedWithLoadMoreIndicator())
-
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "FEED_WITH_LOAD_MORE_INDICATOR_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "FEED_WITH_LOAD_MORE_INDICATOR_dark")
     }
@@ -43,14 +38,12 @@ class FeedSnapshotTests: XCTestCase {
         let sut = makeSUT()
 
         sut.display(feedWithLoadMoreError())
-
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "FEED_WITH_LOAD_MORE_ERROR_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "FEED_WITH_LOAD_MORE_ERROR_dark")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light, contentSize: .extraExtraExtraLarge)), named: "FEED_WITH_LOAD_MORE_ERROR_extraExtraExtraLarge")
     }
 
     // MARK: - Helpers
-
     private func makeSUT() -> ListViewController {
         let bundle = Bundle(for: ListViewController.self)
         let storyboard = UIStoryboard(name: "Feed", bundle: bundle)
@@ -92,13 +85,13 @@ class FeedSnapshotTests: XCTestCase {
     }
 
     private func feedWithLoadMoreIndicator() -> [CellController] {
-        let loadMore = LoadMoreCellController()
+        let loadMore = LoadMoreCellController(callback: {})
         loadMore.display(ResourceLoadingViewModel(isLoading: true))
         return feedWith(loadMore: loadMore)
     }
 
     private func feedWithLoadMoreError() -> [CellController] {
-        let loadMore = LoadMoreCellController()
+        let loadMore = LoadMoreCellController(callback: {})
         loadMore.display(ResourceErrorViewModel(message: "This is a multiline\nerror message"))
         return feedWith(loadMore: loadMore)
     }
@@ -113,6 +106,7 @@ class FeedSnapshotTests: XCTestCase {
             CellController(id: UUID(), loadMore)
         ]
     }
+
 }
 
 private extension ListViewController {
@@ -130,9 +124,7 @@ private extension ListViewController {
 private class ImageStub: FeedImageCellControllerDelegate {
     let viewModel: FeedImageViewModel
     let image: UIImage?
-
     weak var controller: FeedImageCellController?
-    
     init(description: String?, location: String?, image: UIImage?) {
         self.viewModel = FeedImageViewModel(
             description: description,
