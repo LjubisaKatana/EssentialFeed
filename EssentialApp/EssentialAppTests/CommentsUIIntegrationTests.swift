@@ -12,7 +12,8 @@ import EssentialApp
 import EssentialFeed
 import EssentialFeediOS
 
-final class CommentsUIIntegrationTests: FeedUIIntegrationTests {
+final class CommentsUIIntegrationTests: XCTestCase {
+
     func test_commentsView_hasTitle() {
         let (sut, _) = makeSUT()
 
@@ -58,10 +59,8 @@ final class CommentsUIIntegrationTests: FeedUIIntegrationTests {
 
         sut.loadViewIfNeeded()
         assertThat(sut, isRendering: [ImageComment]())
-
         loader.completeCommentsLoading(with: [comment0], at: 0)
         assertThat(sut, isRendering: [comment0])
-
         sut.simulateUserInitiatedReload()
         loader.completeCommentsLoading(with: [comment0, comment1], at: 1)
         assertThat(sut, isRendering: [comment0, comment1])
@@ -74,7 +73,6 @@ final class CommentsUIIntegrationTests: FeedUIIntegrationTests {
         sut.loadViewIfNeeded()
         loader.completeCommentsLoading(with: [comment], at: 0)
         assertThat(sut, isRendering: [comment])
-
         sut.simulateUserInitiatedReload()
         loader.completeCommentsLoading(with: [], at: 1)
         assertThat(sut, isRendering: [ImageComment]())
@@ -97,14 +95,14 @@ final class CommentsUIIntegrationTests: FeedUIIntegrationTests {
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
         let exp = expectation(description: "Wait for background queue")
-
         DispatchQueue.global().async {
             loader.completeCommentsLoading(at: 0)
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1.0)
     }
-    override func test_loadFeedCompletion_rendersErrorMessageOnErrorUntilNextReload() {
+
+    func test_loadCommentsCompletion_rendersErrorMessageOnErrorUntilNextReload() {
         let (sut, loader) = makeSUT()
 
         sut.loadViewIfNeeded()
@@ -117,7 +115,7 @@ final class CommentsUIIntegrationTests: FeedUIIntegrationTests {
         XCTAssertEqual(sut.errorMessage, nil)
     }
 
-    override func test_tapOnErrorView_hidesErrorMessage() {
+    func test_tapOnErrorView_hidesErrorMessage() {
         let (sut, loader) = makeSUT()
 
         sut.loadViewIfNeeded()
@@ -168,7 +166,6 @@ final class CommentsUIIntegrationTests: FeedUIIntegrationTests {
             requests.append(publisher)
             return publisher.eraseToAnyPublisher()
         }
-
         func completeCommentsLoading(with comments: [ImageComment] = [], at index: Int = 0) {
             requests[index].send(comments)
         }
