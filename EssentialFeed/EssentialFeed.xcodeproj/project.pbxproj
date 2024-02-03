@@ -417,9 +417,8 @@
 			children = (
 				EA94321E2B6000F000CA7515 /* Helpers */,
 				EA863C222B6E2335005C1806 /* Shared UI */,
-				EA94321C2B5FFAC700CA7515 /* snapshots */,
+				EAD012E62B6E318300739B90 /* Feed UI */,
 				EAF4ABAF2A862D1A00D108C3 /* EssentialFeediOSTests-Bridging-Header.h */,
-				EA94321A2B5FF9EB00CA7515 /* FeedSnapshotTests.swift */,
 			);
 			path = EssentialFeediOSTests;
 			sourceTree = "<group>";
@@ -699,6 +698,15 @@
 				EACD00802A615C480015FB29 /* EssentialFeedCacheIntegrationTests.swift */,
 			);
 			path = EssentialFeedCacheIntegrationTests;
+			sourceTree = "<group>";
+		};
+		EAD012E62B6E318300739B90 /* Feed UI */ = {
+			isa = PBXGroup;
+			children = (
+				EA94321C2B5FFAC700CA7515 /* snapshots */,
+				EA94321A2B5FF9EB00CA7515 /* FeedSnapshotTests.swift */,
+			);
+			path = "Feed UI";
 			sourceTree = "<group>";
 		};
 		EAD0AC562A40706E00F37D73 /* Feed Cache */ = {
