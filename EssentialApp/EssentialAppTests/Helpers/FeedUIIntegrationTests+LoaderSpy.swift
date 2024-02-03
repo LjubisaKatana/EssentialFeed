@@ -1,32 +1,35 @@
 //
-//  FeedViewControllerTests+LoaderSpy.swift
-//  EssentialFeediOSTests
+//  FeedUIIntegrationTests+LoaderSpy.swift
+//  EssentialAppTests
 //
-//  Created by Ljubisa Katana on 4.9.23..
+//  Created by Ljubisa Katana on 3.2.24..
 //
 
 import Foundation
-import Combine
 import EssentialFeed
 import EssentialFeediOS
+import Combine
 
 extension FeedUIIntegrationTests {
-    
-    class LoaderSpy: FeedImageDataLoader {
-        private var feedRequests = [PassthroughSubject<[FeedImage], Error>]()
 
-        var loadFeedCallCount: Int {// we should not use this property directly (private(set) we can use method instead (load()))
+    class LoaderSpy: FeedImageDataLoader {
+
+        // MARK: - FeedLoader
+
+        private var feedRequests = [PassthroughSubject<Paginated<FeedImage>, Error>]()
+
+        var loadFeedCallCount: Int {
             return feedRequests.count
         }
-        
-        func loadPublisher() -> AnyPublisher<[FeedImage], Error> {
-            let publisher = PassthroughSubject<[FeedImage], Error>()
+
+        func loadPublisher() -> AnyPublisher<Paginated<FeedImage>, Error> {
+            let publisher = PassthroughSubject<Paginated<FeedImage>, Error>()
             feedRequests.append(publisher)
             return publisher.eraseToAnyPublisher()
         }
 
         func completeFeedLoading(with feed: [FeedImage] = [], at index: Int = 0) {
-            feedRequests[index].send(feed)
+            feedRequests[index].send(Paginated(items: feed))
         }
 
         func completeFeedLoadingWithError(at index: Int = 0) {
@@ -34,28 +37,28 @@ extension FeedUIIntegrationTests {
             feedRequests[index].send(completion: .failure(error))
         }
 
-        // MARK: - FeedImageRataLoader
-        
+        // MARK: - FeedImageDataLoader
+
         private struct TaskSpy: FeedImageDataLoaderTask {
             let cancelCallback: () -> Void
             func cancel() {
                 cancelCallback()
             }
         }
-        
+
         private var imageRequests = [(url: URL, completion: (FeedImageDataLoader.Result) -> Void)]()
 
-        private(set) var cancelledImageURLs = [URL]()
-        
         var loadedImageURLs: [URL] {
             return imageRequests.map { $0.url }
         }
-        
+
+        private(set) var cancelledImageURLs = [URL]()
+
         func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) -> FeedImageDataLoaderTask {
             imageRequests.append((url, completion))
             return TaskSpy { [weak self] in self?.cancelledImageURLs.append(url) }
         }
-        
+
         func completeImageLoading(with imageData: Data = Data(), at index: Int = 0) {
             imageRequests[index].completion(.success(imageData))
         }
@@ -65,4 +68,5 @@ extension FeedUIIntegrationTests {
             imageRequests[index].completion(.failure(error))
         }
     }
+
 }
