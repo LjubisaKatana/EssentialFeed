@@ -45,7 +45,7 @@ final class EssentialFeedAPIEndToEndTests: XCTestCase {
     }
 
     // MARK: - Helpers
-    
+
     private func getFeedResult(file: StaticString = #file, line: UInt = #line) -> Swift.Result<[FeedImage], Error>? {
         let client = ephemeralClient()
 
@@ -66,12 +66,12 @@ final class EssentialFeedAPIEndToEndTests: XCTestCase {
         return receivedResult
     }
 
-    private func getFeedImageDataResult(file: StaticString = #file, line: UInt = #line) -> FeedImageDataLoader.Result? {
+    private func getFeedImageDataResult(file: StaticString = #filePath, line: UInt = #line) -> Result<Data, Error>? {
         let client = ephemeralClient()
         let url = feedTestServerURL.appendingPathComponent("73A7F70C-75DA-4C2E-B5A3-EED40DC53AA6/image")
         let exp = expectation(description: "Wait for load completion")
-        
-        var receivedResult: FeedImageDataLoader.Result?
+
+        var receivedResult: Result<Data, Error>?
         client.get(from: url) { result in
             receivedResult = result.flatMap { (data, response) in
                 do {
@@ -83,7 +83,7 @@ final class EssentialFeedAPIEndToEndTests: XCTestCase {
             exp.fulfill()
         }
         wait(for: [exp], timeout: 5.0)
-        
+
         return receivedResult
     }
 
@@ -91,7 +91,7 @@ final class EssentialFeedAPIEndToEndTests: XCTestCase {
         return URL(string: "https://essentialdeveloper.com/feed-case-study/test-api/feed")!
     }
 
-    private func ephemeralClient(file: StaticString = #file, line: UInt = #line) -> HTTPClient {
+    private func ephemeralClient(file: StaticString = #filePath, line: UInt = #line) -> HTTPClient {
         let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
         trackForMemoryLeaks(instance: client, file: file, line: line)
         return client
@@ -104,7 +104,7 @@ final class EssentialFeedAPIEndToEndTests: XCTestCase {
             location: location(at: index),
             url: imageURL(at: index))
     }
-    
+
     private func id(at index: Int) -> UUID {
         return UUID(uuidString: [
             "73A7F70C-75DA-4C2E-B5A3-EED40DC53AA6",
@@ -117,7 +117,7 @@ final class EssentialFeedAPIEndToEndTests: XCTestCase {
             "F79BD7F8-063F-46E2-8147-A67635C3BB01"
         ][index])!
     }
-    
+
     private func description(at index: Int) -> String? {
         return [
             "Description 1",
@@ -130,7 +130,7 @@ final class EssentialFeedAPIEndToEndTests: XCTestCase {
             "Description 8"
         ][index]
     }
-    
+
     private func location(at index: Int) -> String? {
         return [
             "Location 1",
@@ -143,7 +143,7 @@ final class EssentialFeedAPIEndToEndTests: XCTestCase {
             "Location 8"
         ][index]
     }
-    
+
     private func imageURL(at index: Int) -> URL {
         return URL(string: "https://url-\(index+1).com")!
     }

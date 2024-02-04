@@ -11,8 +11,6 @@
 		EA1976142B55660B0008E83E /* EssentialFeed.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA1976112B55660B0008E83E /* EssentialFeed.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EA1976152B55660B0008E83E /* EssentialFeediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1976122B55660B0008E83E /* EssentialFeediOS.framework */; };
 		EA1976162B55660B0008E83E /* EssentialFeediOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA1976122B55660B0008E83E /* EssentialFeediOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EA30E6562B595CE9009BCE76 /* FeedImageDataLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA30E6552B595CE9009BCE76 /* FeedImageDataLoaderSpy.swift */; };
-		EA30E6582B59606D009BCE76 /* XCTestCase+FeedImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA30E6572B59606D009BCE76 /* XCTestCase+FeedImageDataLoader.swift */; };
 		EA38F9302B698CD1003D859B /* CombineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA38F92F2B698CD1003D859B /* CombineHelpers.swift */; };
 		EA396AAE2B5562420023D705 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA396AAD2B5562420023D705 /* AppDelegate.swift */; };
 		EA396AB02B5562420023D705 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA396AAF2B5562420023D705 /* SceneDelegate.swift */; };
@@ -73,8 +71,6 @@
 /* Begin PBXFileReference section */
 		EA1976112B55660B0008E83E /* EssentialFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA1976122B55660B0008E83E /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA30E6552B595CE9009BCE76 /* FeedImageDataLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderSpy.swift; sourceTree = "<group>"; };
-		EA30E6572B59606D009BCE76 /* XCTestCase+FeedImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FeedImageDataLoader.swift"; sourceTree = "<group>"; };
 		EA38F92F2B698CD1003D859B /* CombineHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineHelpers.swift; sourceTree = "<group>"; };
 		EA396AAA2B5562420023D705 /* EssentialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA396AAD2B5562420023D705 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -191,8 +187,6 @@
 				EAFDEDDD2B5F199500FE38F6 /* UIButton+TestHelpers.swift */,
 				EA79A8B22B55985B00C74144 /* XCTestCase+MemoryLeakTracking.swift */,
 				EA79A8B42B5598D800C74144 /* SharedTestHelpers.swift */,
-				EA30E6552B595CE9009BCE76 /* FeedImageDataLoaderSpy.swift */,
-				EA30E6572B59606D009BCE76 /* XCTestCase+FeedImageDataLoader.swift */,
 				EA9432162B5FF36000CA7515 /* HTTPClientStub.swift */,
 				EA9432182B5FF3C200CA7515 /* InMemoryFeedStore.swift */,
 				EA71F0052B613BD800D1140A /* UIView+TestHelpers.swift */,
@@ -340,12 +334,10 @@
 				EA79A8B52B5598D800C74144 /* SharedTestHelpers.swift in Sources */,
 				EAAA42B42B558F9100A4D82D /* EssentialAppTests.swift in Sources */,
 				EA9432192B5FF3C200CA7515 /* InMemoryFeedStore.swift in Sources */,
-				EA30E6562B595CE9009BCE76 /* FeedImageDataLoaderSpy.swift in Sources */,
 				EAFDEDE62B5F199500FE38F6 /* FeedUIIntegrationTests+Assertions.swift in Sources */,
 				EA9432172B5FF36000CA7515 /* HTTPClientStub.swift in Sources */,
 				EAFDEDE52B5F199500FE38F6 /* FeedImageCell+TestHelpers.swift in Sources */,
 				EA71F0062B613BD800D1140A /* UIView+TestHelpers.swift in Sources */,
-				EA30E6582B59606D009BCE76 /* XCTestCase+FeedImageDataLoader.swift in Sources */,
 				EAFDEDE32B5F199500FE38F6 /* UIButton+TestHelpers.swift in Sources */,
 				EA9432152B5FC34900CA7515 /* FeedAcceptanceTests.swift in Sources */,
 				EAFDEDE22B5F199500FE38F6 /* ListViewController+TestHelpers.swift in Sources */,
