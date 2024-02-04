@@ -16,6 +16,9 @@ jobs:
     
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_14.2.app
-    
+
+    - name: CI-macOS
+      run: xcodebuild clean build test -project EssentialApp/EssentailApp.xcworkspace -scheme "CI_macOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+
     - name: CI-iOS
       run: xcodebuild clean build test -workspace EssentialApp/EssentailApp.xcworkspace -scheme "CI_iOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,OS=16.2,name=iPhone 14" ONLY_ACTIVE_ARCH=YES
