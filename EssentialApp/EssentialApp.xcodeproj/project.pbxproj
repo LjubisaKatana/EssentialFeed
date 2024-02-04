@@ -23,6 +23,7 @@
 		EA71F0062B613BD800D1140A /* UIView+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA71F0052B613BD800D1140A /* UIView+TestHelpers.swift */; };
 		EA79A8B32B55985B00C74144 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA79A8B22B55985B00C74144 /* XCTestCase+MemoryLeakTracking.swift */; };
 		EA79A8B52B5598D800C74144 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA79A8B42B5598D800C74144 /* SharedTestHelpers.swift */; };
+		EA79FE8D2B6FA71600B12A76 /* NullStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA79FE8C2B6FA71600B12A76 /* NullStore.swift */; };
 		EA8A79F82B6EC24E00ED6461 /* CommentsUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8A79F72B6EC24E00ED6461 /* CommentsUIComposer.swift */; };
 		EA8A79FA2B6EC2A800ED6461 /* CommentsUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8A79F92B6EC2A800ED6461 /* CommentsUIIntegrationTests.swift */; };
 		EA8A7A0B2B6EF46600ED6461 /* FeedUIIntegrationTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8A7A0A2B6EF46600ED6461 /* FeedUIIntegrationTests+LoaderSpy.swift */; };
@@ -86,6 +87,7 @@
 		EA71F0052B613BD800D1140A /* UIView+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+TestHelpers.swift"; sourceTree = "<group>"; };
 		EA79A8B22B55985B00C74144 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		EA79A8B42B5598D800C74144 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
+		EA79FE8C2B6FA71600B12A76 /* NullStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullStore.swift; sourceTree = "<group>"; };
 		EA8A79F72B6EC24E00ED6461 /* CommentsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsUIComposer.swift; sourceTree = "<group>"; };
 		EA8A79F92B6EC2A800ED6461 /* CommentsUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsUIIntegrationTests.swift; sourceTree = "<group>"; };
 		EA8A7A0A2B6EF46600ED6461 /* FeedUIIntegrationTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedUIIntegrationTests+LoaderSpy.swift"; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				EA396AB82B5562440023D705 /* LaunchScreen.storyboard */,
 				EA396ABB2B5562440023D705 /* Info.plist */,
 				EA38F92F2B698CD1003D859B /* CombineHelpers.swift */,
+				EA79FE8C2B6FA71600B12A76 /* NullStore.swift */,
 			);
 			path = EssentialApp;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			files = (
 				EA396AB22B5562420023D705 /* ViewController.swift in Sources */,
 				EA396AAE2B5562420023D705 /* AppDelegate.swift in Sources */,
+				EA79FE8D2B6FA71600B12A76 /* NullStore.swift in Sources */,
 				EA38F9302B698CD1003D859B /* CombineHelpers.swift in Sources */,
 				EA396AB02B5562420023D705 /* SceneDelegate.swift in Sources */,
 				EA8A79F82B6EC24E00ED6461 /* CommentsUIComposer.swift in Sources */,
