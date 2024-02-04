@@ -10,7 +10,6 @@ import Combine
 import EssentialFeed
 
 public extension Paginated {
-
     init(items: [Item], loadMorePublisher: (() -> AnyPublisher<Self, Error>)?) {
         self.init(items: items, loadMore: loadMorePublisher.map { publisher in
             return { completion in
@@ -51,7 +50,6 @@ public extension HTTPClient {
         .eraseToAnyPublisher()
     }
 }
-
 
 public extension FeedImageDataLoader {
     typealias Publisher = AnyPublisher<Data, Error>
@@ -118,21 +116,20 @@ extension Publisher {
     }
 }
 
-
 extension DispatchQueue {
     static var immediateWhenOnMainQueueScheduler: ImmediateWhenOnMainQueueScheduler {
         ImmediateWhenOnMainQueueScheduler.shared
     }
 
     struct ImmediateWhenOnMainQueueScheduler: Scheduler {
-       typealias SchedulerTimeType = DispatchQueue.SchedulerTimeType
-       typealias SchedulerOptions = DispatchQueue.SchedulerOptions
+        typealias SchedulerTimeType = DispatchQueue.SchedulerTimeType
+        typealias SchedulerOptions = DispatchQueue.SchedulerOptions
 
-       var now: SchedulerTimeType {
-           DispatchQueue.main.now
-       }
-
-       var minimumTolerance: SchedulerTimeType.Stride {
+        var now: SchedulerTimeType {
+            DispatchQueue.main.now
+        }
+        
+        var minimumTolerance: SchedulerTimeType.Stride {
             DispatchQueue.main.minimumTolerance
         }
 
